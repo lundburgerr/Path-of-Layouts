@@ -1,0 +1,1040 @@
+{
+  "data": {
+    "MasterFile": "Metadata/Terrain/Gallows/Act3/3_1/master_tgr.tsi"
+  },
+  "edge_count": 25,
+  "edge_types": {
+    "CreekVirtual": "CreekVirtual #ff0000ff\nwildcard\nwildcard\n0 3 1\nvirtual\nMetadata/Terrain/Jungle/JungleExterior/Water/water.et 1\nMetadata/Terrain/Jungle/JungleExterior/Water/water.et 0\n40 40\n",
+    "JungleEdge": "JungleEdge #FF00FF00\nwildcard\nMetadata/Terrain/Jungle/JungleExterior/jungle_trees.gt\n0 3 0",
+    "JungleSandEdge": "JungleSandEdge #FF80FF00\nMetadata/Terrain/Jungle/JungleExterior/Sand/SandMud.gt\nMetadata/Terrain/Jungle/JungleExterior/jungle_trees.gt\n0 3 1",
+    "JungleTreesToWater": "JungleTreesToWater #FF00FFFF\nMetadata/Terrain/Jungle/JungleExterior/jungle_trees.gt\nMetadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt\n0 3 1",
+    "JungleWaterEdge": "JungleWaterEdge #FF0000FF\nwildcard\nMetadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt\n0 3 0",
+    "SandBridgeVirtual": "SandBridgeVirtual #ff00ffff\nMetadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt\nMetadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt\n0 3 1\nvirtual\nMetadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et 0\nMetadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et 1\n40 40\n",
+    "SandMudEdge": "SandMudEdge #FFFFFF00\nMetadata/Terrain/Jungle/JungleExterior/Sand/SandMud.gt\nwildcard\n0 3 1",
+    "SandRiverVirtual": "SandRiverVirtual #ff00ffff\nMetadata/Terrain/Jungle/JungleExterior/Sand/SandMud.gt\nMetadata/Terrain/Jungle/JungleExterior/Sand/SandMud.gt\n0 3 1\nvirtual\nMetadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et 1\nMetadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et 0\n40 40\n",
+    "SandWaterEdge": "SandWaterEdge #FF00FFFF\nMetadata/Terrain/Jungle/JungleExterior/Sand/SandMud.gt\nMetadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt\n0 3 1"
+  },
+  "edges": [
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 8,
+      "path": [],
+      "to": 5,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FF00",
+      "edge_type": "JungleEdge",
+      "from": 3,
+      "path": [],
+      "to": 0,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/jungle.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 4,
+      "path": [],
+      "to": 0,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 11,
+      "path": [],
+      "to": 10,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 10,
+      "path": [],
+      "to": 9,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#ff00ffff",
+      "edge_type": "SandBridgeVirtual",
+      "from": 9,
+      "path": [],
+      "to": 2,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_bridge_virtual.et",
+        40,
+        40
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 9,
+      "path": [],
+      "to": 11,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 13,
+      "path": [
+        [
+          58,
+          472
+        ]
+      ],
+      "to": 12,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FF00",
+      "edge_type": "JungleEdge",
+      "from": 6,
+      "path": [
+        [
+          242,
+          702
+        ]
+      ],
+      "to": 12,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/jungle.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF0000FF",
+      "edge_type": "JungleWaterEdge",
+      "from": 12,
+      "path": [],
+      "to": 0,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Water/water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF0000FF",
+      "edge_type": "JungleWaterEdge",
+      "from": 17,
+      "path": [],
+      "to": 6,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Water/water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 16,
+      "path": [],
+      "to": 17,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 14,
+      "path": [],
+      "to": 15,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "JungleTreesToWater",
+      "from": 13,
+      "path": [],
+      "to": 6,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleToWater/jungle_to_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#ff0000ff",
+      "edge_type": "CreekVirtual",
+      "from": 12,
+      "path": [],
+      "to": 19,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/JungleCreek/creek_virtual.et",
+        20,
+        40
+      ]
+    },
+    {
+      "color": "#FFFFFF00",
+      "edge_type": "SandMudEdge",
+      "from": 19,
+      "path": [],
+      "to": 3,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Sand/edge_SandMud.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FF00",
+      "edge_type": "JungleEdge",
+      "from": 17,
+      "path": [],
+      "to": 20,
+      "unknown": [
+        100,
+        1,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/jungle.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FFFFFF00",
+      "edge_type": "SandMudEdge",
+      "from": 20,
+      "path": [
+        [
+          426,
+          702
+        ]
+      ],
+      "to": 19,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Sand/edge_SandMud.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#ff00ffff",
+      "edge_type": "SandRiverVirtual",
+      "from": 19,
+      "path": [],
+      "to": 7,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_river_virtual.et",
+        20,
+        40
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 2,
+      "path": [],
+      "to": 15,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 7,
+      "path": [],
+      "to": 2,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 8,
+      "path": [],
+      "to": 1,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF00FFFF",
+      "edge_type": "SandWaterEdge",
+      "from": 1,
+      "path": [],
+      "to": 7,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/SandToWater/sand_water.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF80FF00",
+      "edge_type": "JungleSandEdge",
+      "from": 15,
+      "path": [],
+      "to": 20,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Sand/JungleSand.et",
+        0,
+        0
+      ]
+    },
+    {
+      "color": "#FF80FF00",
+      "edge_type": "JungleSandEdge",
+      "from": 3,
+      "path": [],
+      "to": 8,
+      "unknown": [
+        100,
+        0,
+        0,
+        "Metadata/Terrain/Jungle/JungleExterior/Sand/JungleSand.et",
+        0,
+        0
+      ]
+    }
+  ],
+  "master": {
+    "ChestData": "chests.cht",
+    "Critters": "critters.clt",
+    "Decals": "decals.dct",
+    "Doodads": "doodads.ddt",
+    "FillTiles": "random_fill_tiles.gft",
+    "MaterialsList": "materials.mtd",
+    "OuterBufferSize": null,
+    "OuterGroundType": "Metadata/Terrain/Jungle/JungleExterior/Water/jungle_water.gt",
+    "Overlays": "overlays.toy",
+    "RoomOverlap": null,
+    "RoomSet": "generate_tgr.rs",
+    "RoomUnitSize": null,
+    "StoreyHeight": null,
+    "TileSet": "tiles.tst",
+    "UseParentMinimapLayer": null,
+    "version": null
+  },
+  "node_count": 25,
+  "nodes": [
+    {
+      "numbers": [
+        2,
+        1,
+        9
+      ],
+      "room": "exit",
+      "strings": [
+        "entrance2",
+        "killzone=6"
+      ],
+      "transform": "FR180",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 150,
+      "y": 173
+    },
+    {
+      "numbers": [
+        21,
+        22
+      ],
+      "room": "bridge_crossgraph",
+      "strings": [],
+      "transform": "I",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 794,
+      "y": 334
+    },
+    {
+      "numbers": [
+        20,
+        5,
+        19
+      ],
+      "room": "bridge",
+      "strings": [],
+      "transform": "R270",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 541,
+      "y": 748
+    },
+    {
+      "numbers": [
+        1,
+        24,
+        15
+      ],
+      "room": "join",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 587,
+      "y": 242
+    },
+    {
+      "numbers": [
+        2
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 150,
+      "y": 12
+    },
+    {
+      "numbers": [
+        0
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 725,
+      "y": 12
+    },
+    {
+      "numbers": [
+        13,
+        8,
+        10
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 104,
+      "y": 794
+    },
+    {
+      "numbers": [
+        18,
+        22,
+        20
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 587,
+      "y": 564
+    },
+    {
+      "numbers": [
+        0,
+        21,
+        24
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 771,
+      "y": 173
+    },
+    {
+      "numbers": [
+        6,
+        4,
+        5
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 656,
+      "y": 702
+    },
+    {
+      "numbers": [
+        4,
+        3
+      ],
+      "room": "ford_crossgraph",
+      "strings": [],
+      "transform": "I",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 794,
+      "y": 725
+    },
+    {
+      "numbers": [
+        3,
+        6
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 725,
+      "y": 656
+    },
+    {
+      "numbers": [
+        9,
+        14,
+        8,
+        7
+      ],
+      "room": "bridge",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 265,
+      "y": 472
+    },
+    {
+      "numbers": [
+        7,
+        13
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "x": 35,
+      "y": 656
+    },
+    {
+      "numbers": [
+        12
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 518,
+      "y": 1300
+    },
+    {
+      "numbers": [
+        19,
+        12,
+        23
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 587,
+      "y": 1001
+    },
+    {
+      "numbers": [
+        11
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 104,
+      "y": 1300
+    },
+    {
+      "numbers": [
+        10,
+        16,
+        11
+      ],
+      "room": "carver",
+      "strings": [],
+      "transform": "I",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 173,
+      "y": 1024
+    },
+    {
+      "numbers": [],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "x": 334,
+      "y": 311
+    },
+    {
+      "numbers": [
+        14,
+        15,
+        18,
+        17
+      ],
+      "room": "",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 472,
+      "y": 518
+    },
+    {
+      "numbers": [
+        17,
+        23,
+        16
+      ],
+      "room": "join",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 449,
+      "y": 1001
+    },
+    {
+      "numbers": [],
+      "room": "sink",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 12,
+      "y": 12
+    },
+    {
+      "numbers": [],
+      "room": "sink",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 794,
+      "y": 12
+    },
+    {
+      "numbers": [],
+      "room": "sink",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 587,
+      "y": 1300
+    },
+    {
+      "numbers": [],
+      "room": "sink",
+      "strings": [],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "x": 12,
+      "y": 1300
+    }
+  ],
+  "room_set": [],
+  "size": [
+    36,
+    57
+  ],
+  "strings": [
+    "",
+    "Metadata/Terrain/Jungle/JungleExterior/Sand/GrassMud.gt",
+    ""
+  ],
+  "tile_set": [],
+  "version": 25
+}

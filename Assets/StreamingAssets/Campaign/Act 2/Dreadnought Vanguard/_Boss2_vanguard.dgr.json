@@ -1,0 +1,73 @@
+{
+  "data": {
+    "Default%": [
+      0,
+      0,
+      0
+    ],
+    "MasterFile": "Metadata/Terrain/Gallows/Act2/2_12_2/Boss2_master.tsi"
+  },
+  "edge_count": 0,
+  "edge_types": {},
+  "edges": [],
+  "master": {
+    "Decals": "decals.dct",
+    "ExtendActivationDistance": "Client",
+    "FillTiles": "Boss2_random_fill_tiles.gft",
+    "MaterialsList": "materials.mtd",
+    "OuterBufferSize": null,
+    "OuterGroundType": "Metadata/Terrain/Desert/FarudinCarts/Dunes/dreadnought_dune.gt",
+    "RoomOverlap": null,
+    "RoomSet": "Boss2_generate.rs",
+    "RoomUnitSize": null,
+    "StoreyHeight": null,
+    "TileSet": "Boss2_tiles.tst",
+    "version": null
+  },
+  "node_count": 1,
+  "nodes": [
+    {
+      "numbers": [],
+      "room": "boss2",
+      "strings": [],
+      "transform": "I",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        "N",
+        0
+      ],
+      "x": 12,
+      "y": 12
+    }
+  ],
+  "numbers": [
+    0
+  ],
+  "room_set": [
+    {
+      "file": "Metadata/Terrain/Gallows/Act2/2_12_2/Rooms/Unique/Boss_Phase2.arm",
+      "suffix": [
+        "I"
+      ]
+    }
+  ],
+  "size": [
+    8,
+    8
+  ],
+  "strings": [
+    "",
+    "",
+    ""
+  ],
+  "tile_set": [],
+  "version": 25
+}

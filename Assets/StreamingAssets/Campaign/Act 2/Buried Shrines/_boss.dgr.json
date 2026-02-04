@@ -1,0 +1,94 @@
+{
+  "data": {
+    "Default%": [
+      0,
+      0,
+      0
+    ],
+    "MasterFile": "Metadata/Terrain/Gallows/Act2/2_4_2/master_boss.tsi"
+  },
+  "edge_count": 0,
+  "edge_types": {},
+  "edges": [],
+  "master": {
+    "ChestData": "chests.cht",
+    "Decals": "decals.dct",
+    "EdgeCombination": "maraketh.ecf",
+    "FillTiles": "random_fill_tiles.gft",
+    "MaterialsList": "materials_boss.mtd",
+    "OuterBufferSize": null,
+    "OuterGroundType": "Metadata/Terrain/black_inside_wall.gt",
+    "Overlays": "overlays.toy",
+    "RoomOverlap": null,
+    "RoomSet": "generate_boss.rs",
+    "RoomUnitSize": null,
+    "StoreyHeight": null,
+    "TileSet": "tiles_boss.tst",
+    "version": null
+  },
+  "node_count": 1,
+  "nodes": [
+    {
+      "numbers": [],
+      "room": "boss",
+      "strings": [
+        "telepad1",
+        "teleport2-%areaname%",
+        "telepad3",
+        "teleport4disabled-Arena",
+        "telepad4"
+      ],
+      "transform": "(any)",
+      "unknown": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        "N",
+        0
+      ],
+      "x": 11,
+      "y": 11
+    }
+  ],
+  "numbers": [
+    0
+  ],
+  "room_set": [
+    {
+      "file": "Metadata/Terrain/Gallows/Act2/2_4_2/Rooms/Unique/boss_01.arm",
+      "suffix": [
+        "I"
+      ]
+    }
+  ],
+  "size": [
+    4,
+    4
+  ],
+  "strings": [
+    "",
+    "",
+    ""
+  ],
+  "tile_set": [
+    {
+      "file": "Metadata/Terrain/Desert/Maraketh/Features/Goddess_Altar_01.tdt",
+      "suffix": [
+        "I"
+      ]
+    },
+    {
+      "file": "Metadata/Terrain/Desert/Maraketh/Features/Goddess_Altar_01.tdt",
+      "suffix": [
+        "R270"
+      ]
+    }
+  ],
+  "version": 25
+}
