@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Bootstrap : MonoBehaviour
+namespace fireMCG.PathOfLayouts.System
 {
+    public class Bootstrap : MonoBehaviour
+    {
 
+    }
 }

@@ -1,11 +1,14 @@
-using fireMCG.PathOfLayouts.Messaging;
+using fireMCG.PathOfLayouts.System;
 
-public class OnAppStateChangeRequest : IMessage
+namespace fireMCG.PathOfLayouts.Messaging
 {
-    public readonly StateController.AppState TargetState;
-
-    public OnAppStateChangeRequest(StateController.AppState targetState)
+    public class OnAppStateChangeRequest : IMessage
     {
-        TargetState = targetState;
+        public readonly StateController.AppState TargetState;
+
+        public OnAppStateChangeRequest(StateController.AppState targetState)
+        {
+            TargetState = targetState;
+        }
     }
 }

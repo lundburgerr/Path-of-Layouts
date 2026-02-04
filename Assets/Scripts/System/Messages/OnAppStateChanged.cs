@@ -1,13 +1,16 @@
-using fireMCG.PathOfLayouts.Messaging;
+using fireMCG.PathOfLayouts.System;
 
-public class OnAppStateChanged : IMessage
+namespace fireMCG.PathOfLayouts.Messaging
 {
-    public readonly StateController.AppState PreviousState;
-    public readonly StateController.AppState NewState;
-
-    public OnAppStateChanged(StateController.AppState previousState, StateController.AppState newState)
+    public class OnAppStateChanged : IMessage
     {
-        PreviousState = previousState;
-        NewState = newState;
+        public readonly StateController.AppState PreviousState;
+        public readonly StateController.AppState NewState;
+
+        public OnAppStateChanged(StateController.AppState previousState, StateController.AppState newState)
+        {
+            PreviousState = previousState;
+            NewState = newState;
+        }
     }
 }

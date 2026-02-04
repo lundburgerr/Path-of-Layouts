@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class LearningCenterUiController : MonoBehaviour
+namespace fireMCG.PathOfLayouts.Ui
 {
+    public class LearningCenterUiController : MonoBehaviour
+    {
 
+    }
 }
