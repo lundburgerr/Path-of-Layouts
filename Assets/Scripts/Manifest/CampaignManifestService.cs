@@ -1,3 +1,4 @@
+using fireMCG.PathOfLayouts.Common;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -20,7 +21,7 @@ namespace fireMCG.PathOfLayouts.Manifest
 
         public async Task LoadManifestAsync()
         {
-            string json = await ReadStreamingAssetsTextAsync(CampaignPaths.GetManifestFilePath());
+            string json = await ReadStreamingAssetsTextAsync(PathResolver.GetManifestFilePath());
             CampaignManifest manifest = JsonConvert.DeserializeObject<CampaignManifest>(json);
 
             if(manifest is null)

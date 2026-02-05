@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using fireMCG.PathOfLayouts.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace fireMCG.PathOfLayouts.Manifest
         [MenuItem("Tools/Path of Layouts/Build Campaign Manifest")]
         public static void BuildAndWriteManifest()
         {
-            string manifestRootPath = CampaignPaths.GetManifestRootPath();
+            string manifestRootPath = PathResolver.GetRootPath();
 
             if (!Directory.Exists(manifestRootPath))
             {
@@ -34,7 +35,7 @@ namespace fireMCG.PathOfLayouts.Manifest
             CampaignManifest manifest = BuildManifestObject();
             string json = JsonConvert.SerializeObject(manifest, Formatting.Indented);
 
-            File.WriteAllText(CampaignPaths.GetManifestFilePath(), json);
+            File.WriteAllText(PathResolver.GetManifestFilePath(), json);
         }
 
         private static CampaignManifest BuildManifestObject()
@@ -51,7 +52,7 @@ namespace fireMCG.PathOfLayouts.Manifest
 
         private static void BuildManifestData(CampaignManifest manifest)
         {
-            string[] actDirectories = Directory.GetDirectories(CampaignPaths.GetManifestRootPath())
+            string[] actDirectories = Directory.GetDirectories(PathResolver.GetRootPath())
                 .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
 

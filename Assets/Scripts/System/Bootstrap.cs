@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.System
 {
-    public class Bootstrap : MonoBehaviour
+    public sealed class Bootstrap : MonoBehaviour
     {
         public static Bootstrap Instance { get; private set; }
         public CampaignManifestService ManifestService { get; private set; }

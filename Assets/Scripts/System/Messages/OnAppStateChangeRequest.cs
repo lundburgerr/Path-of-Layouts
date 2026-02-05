@@ -2,7 +2,7 @@ using fireMCG.PathOfLayouts.System;
 
 namespace fireMCG.PathOfLayouts.Messaging
 {
-    public class OnAppStateChangeRequest : IMessage
+    public sealed class OnAppStateChangeRequest : IMessage
     {
         public readonly StateController.AppState TargetState;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace fireMCG.PathOfLayouts.Manifest
 {
     [Serializable]
-    public class AreaEntry
+    public sealed class AreaEntry
     {
         [JsonProperty("areaId")]
         public string areaId;

@@ -1,3 +1,4 @@
+using fireMCG.PathOfLayouts.Common;
 using fireMCG.PathOfLayouts.LayoutBrowser.Ui;
 using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Ui
 {
-    public class LayoutBrowserUiController : MonoBehaviour
+    public sealed class LayoutBrowserUiController : MonoBehaviour
     {
         private enum View
         {
@@ -140,7 +141,7 @@ namespace fireMCG.PathOfLayouts.Ui
             }
         }
 
-        private void OpenGraphWindow()
+        private async void OpenGraphWindow()
         {
             Show(View.Graphs);
 
@@ -149,8 +150,11 @@ namespace fireMCG.PathOfLayouts.Ui
 
             foreach (GraphEntry graph in graphs)
             {
+                string renderPath = PathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.graphId);
+                Texture2D texture = await TextureFileLoader.LoadPngAsync(renderPath);
+
                 GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
-                card.Initialize(SelectId, PlayId, graph.graphId);
+                card.Initialize(SelectId, PlayId, graph.graphId, texture);
             }
         }
 

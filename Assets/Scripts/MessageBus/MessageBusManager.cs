@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace fireMCG.PathOfLayouts.Messaging
 {
-	public class MessageBusManager : IMessageBus
+	public sealed class MessageBusManager : IMessageBus
 	{
 		private static readonly MessageBusManager _instance;
 

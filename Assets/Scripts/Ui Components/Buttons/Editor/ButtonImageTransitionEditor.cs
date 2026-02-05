@@ -5,7 +5,7 @@ namespace fireMCG.PathOfLayouts.Ui.Components
 {
     [CustomEditor(typeof(ButtonImageTransition))]
     [CanEditMultipleObjects]
-    public class ButtonImageTransitionEditor : ButtonEditor
+    public sealed class ButtonImageTransitionEditor : ButtonEditor
     {
         private SerializedProperty _hoverOffIcon;
         private SerializedProperty _hoverOnIcon;

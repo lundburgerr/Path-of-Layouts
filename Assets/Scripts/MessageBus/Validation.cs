@@ -8,11 +8,11 @@ namespace fireMCG.PathOfLayouts.Messaging
 		{
 			if(type == null)
 			{
-				throw new ArgumentNullException(nameof(type), "Message type is null.");
+				throw new ArgumentNullException(nameof(type), "Validation.IsMessageType error, message type is null.");
 			}
 			if(!typeof(IMessage).IsAssignableFrom(type))
 			{
-				throw new ArgumentException($"Message type '{type?.FullName ?? "null"}' is not of type '{typeof(IMessage).FullName}'.");
+				throw new ArgumentException($"Validation.IsMessageType error, message type '{type?.FullName ?? "null"}' is not of type '{typeof(IMessage).FullName}'.");
 			}
 
 			return type;

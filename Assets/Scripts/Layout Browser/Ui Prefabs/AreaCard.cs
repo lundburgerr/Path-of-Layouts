@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
 {
-    public class AreaCard : MonoBehaviour
+    public sealed class AreaCard : MonoBehaviour
     {
         private Action<string> _selectedCallback;
         private string _areaId;

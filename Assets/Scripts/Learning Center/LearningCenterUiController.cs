@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Ui
 {
-    public class LearningCenterUiController : MonoBehaviour
+    public sealed class LearningCenterUiController : MonoBehaviour
     {
 
     }

@@ -4,7 +4,7 @@ using System;
 namespace fireMCG.PathOfLayouts.Manifest
 {
     [Serializable]
-    public class GraphEntry
+    public sealed class GraphEntry
     {
         [JsonProperty("graphId")]
         public string graphId;

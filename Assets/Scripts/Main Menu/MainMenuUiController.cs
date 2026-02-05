@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Ui
 {
-    public class MainMenuUiController : MonoBehaviour
+    public sealed class MainMenuUiController : MonoBehaviour
     {
         [field: SerializeField] private GameObject _settingsWindow;
 
@@ -15,7 +15,7 @@ namespace fireMCG.PathOfLayouts.Ui
 
         public void QuickPlay()
         {
-
+            MessageBusManager.Resolve.Publish(new PlayRandomLayoutMessage());
         }
 
         public void OpenLayoutBrowser()

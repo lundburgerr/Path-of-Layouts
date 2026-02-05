@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Messaging
 {
-	internal class ListenersForMessageType
+	internal sealed class ListenersForMessageType
 	{
 		private Delegate _listeners;
 

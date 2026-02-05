@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.System
 {
-    public class StateController : MonoBehaviour
+    public sealed class StateController : MonoBehaviour
     {
         public enum AppState
         {
