@@ -71,6 +71,9 @@ namespace fireMCG.PathOfLayouts.Gameplay
         {
             Clear();
 
+            _playerVisualTransform.sizeDelta = new Vector2(_playerVisualRadius * 2, _playerVisualRadius * 2);
+
+            _playerPosition = _collisionMap.GetSpawnPoint();
             _fogOfWar.RevealAt(PlayerPixelPosition);
 
             _isReady = true;

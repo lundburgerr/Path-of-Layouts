@@ -19,7 +19,7 @@ namespace fireMCG.PathOfLayouts.Common
                 return null;
             }
 
-            Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, mipChain: false, linear: true);
+            Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, mipChain: false, linear: false);
             bool ok = texture.LoadImage(bytes, markNonReadable: false);
 
             if (!ok)
