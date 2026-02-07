@@ -5303,7 +5303,8 @@ MonoBehaviour:
   _cameraTransform: {fileID: 1239489221}
   _playerVisualTransform: {fileID: 2033457221}
   _fogOfWar: {fileID: 2105642974}
-  _pixelSpeedPerSecond: 60
+  _playerVisualRadius: 2
+  _pixelSpeedPerSecond: 360
 --- !u!1 &1242516139
 GameObject:
   m_ObjectHideFlags: 0
@@ -8424,10 +8425,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Gameplay.FogOfWar
   _fogImage: {fileID: 2105642972}
   _fogTransform: {fileID: 2105642971}
-  _fogShader: {fileID: 4800000, guid: 9a636964380ded146bcf74ec63d478ff, type: 3}
-  _fogStampShader: {fileID: 4800000, guid: 3122dce88fbc70949b10cb59187634c4, type: 3}
-  _hardBrushRadius: 60
-  _softBrushRadius: 100
+  _fogMaterial: {fileID: 2100000, guid: fc17f5f15e128fc4b9e1f22f22137993, type: 2}
+  _fogStampMaterial: {fileID: 2100000, guid: 79bf87f0401d8384d885045b5e7440ce, type: 2}
+  _hardBrushRadius: 80
+  _softBrushRadius: 120
 --- !u!1 &2113365456
 GameObject:
   m_ObjectHideFlags: 0

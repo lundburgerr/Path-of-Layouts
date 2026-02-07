@@ -12,9 +12,6 @@ namespace fireMCG.PathOfLayouts.Ui.Components
 
         protected override void Awake()
         {
-            Assert.IsNotNull(_hoverOffIcon);
-            Assert.IsNotNull(_hoverOnIcon);
-
             SetHoverState(false);
         }
 
