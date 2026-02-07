@@ -41,8 +41,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
             _layoutTransform.sizeDelta = new Vector2(message.LayoutMap.width, message.LayoutMap.height);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutTransform);
-
-            _collisionMap.Build(message.CollisionMap);
         }
     }
 }
