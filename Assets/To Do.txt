@@ -1,11 +1,4 @@
 Cached Gameplay Entry Behaviour:
-- Keep cached how the player entered the gameplay state
-- - Target layout
-- - Random layout
-- - Random graph
-- - Random area
-- - Random act
-- Add a second "replay" button which uses the same behaviour the user choosed initially
 - Disable the button if the initial behaviour was "Target layout" since this would effectively be the same as the replay button
 
 Data Persistence:
