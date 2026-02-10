@@ -67,6 +67,13 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         public void OnReplayLayout(OnReplayLayoutMessage message)
         {
+            if (!message.IsRandom)
+            {
+                Replay();
+
+                return;
+            }
+
             switch (_cachedLayoutMessage.LayoutLoadingMethod)
             {
                 case LayoutLoader.LayoutLoadingMethod.RandomAct:
@@ -92,11 +99,16 @@ namespace fireMCG.PathOfLayouts.Gameplay
                             _cachedLayoutMessage.GraphId));
                     break;
                 default:
-                    _fogOfWar.Build(_layoutDisplay.texture.width, _layoutDisplay.texture.height);
-                    _timer.RestartTimer();
-                    _playerController.Initialize();
+                    Replay();
                     break;
             }
+        }
+
+        private void Replay()
+        {
+            _fogOfWar.Build(_layoutDisplay.texture.width, _layoutDisplay.texture.height);
+            _timer.RestartTimer();
+            _playerController.Initialize();
         }
     }
 }

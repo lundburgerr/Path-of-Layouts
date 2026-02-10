@@ -32,7 +32,12 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         public void Replay()
         {
-            MessageBusManager.Resolve.Publish(new OnReplayLayoutMessage());
+            MessageBusManager.Resolve.Publish(new OnReplayLayoutMessage(false));
+        }
+
+        public void RandomReplay()
+        {
+            MessageBusManager.Resolve.Publish(new OnReplayLayoutMessage(true));
         }
 
         public void ToggleGameplaySettings()
