@@ -1,5 +1,6 @@
 using fireMCG.PathOfLayouts.Common;
 using fireMCG.PathOfLayouts.Core;
+using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
 using System.Collections.Generic;
@@ -104,8 +105,8 @@ namespace fireMCG.PathOfLayouts.Layouts
         {
             Texture2D layoutMap = null;
             Texture2D collisionMap = null;
-            string layoutPath = PathResolver.GetLayoutFilePath(actId, areaId, graphId, layoutId);
-            string collisionPath = PathResolver.GetCollisionMapFilePath(actId, areaId, graphId, layoutId);
+            string layoutPath = StreamingPathResolver.GetLayoutFilePath(actId, areaId, graphId, layoutId);
+            string collisionPath = StreamingPathResolver.GetCollisionMapFilePath(actId, areaId, graphId, layoutId);
 
             try
             {

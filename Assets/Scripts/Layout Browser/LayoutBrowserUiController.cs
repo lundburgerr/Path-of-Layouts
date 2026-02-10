@@ -1,5 +1,6 @@
 using fireMCG.PathOfLayouts.Common;
 using fireMCG.PathOfLayouts.Core;
+using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.LayoutBrowser.Ui;
 using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Manifest;
@@ -170,7 +171,7 @@ namespace fireMCG.PathOfLayouts.Ui
 
             foreach (GraphEntry graph in graphs)
             {
-                string renderPath = PathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.graphId);
+                string renderPath = StreamingPathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.graphId);
                 Texture2D texture = TextureFileLoader.LoadPng(renderPath, FilterMode.Bilinear);
 
                 GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
@@ -187,7 +188,7 @@ namespace fireMCG.PathOfLayouts.Ui
 
             foreach (string layout in layoutIds)
             {
-                string collisionPath = PathResolver.GetCollisionMapFilePath(_selectedActId, _selectedAreaId, _selectedGraphId, layout);
+                string collisionPath = StreamingPathResolver.GetCollisionMapFilePath(_selectedActId, _selectedAreaId, _selectedGraphId, layout);
                 Texture2D texture = TextureFileLoader.LoadPng(collisionPath, FilterMode.Bilinear);
 
                 LayoutCard card = Instantiate(_layoutCardPrefab, _layoutGridContent);

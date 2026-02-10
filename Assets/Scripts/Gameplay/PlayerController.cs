@@ -11,6 +11,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
         [SerializeField] private RectTransform _playerVisualTransform;
         [SerializeField] private CollisionMap _collisionMap;
         [SerializeField] private FogOfWar _fogOfWar;
+        [SerializeField] private Timer _timer;
 
         [SerializeField] private int _playerVisualRadius = 4;
         [SerializeField] private int _pixelSpeedPerSecond = 40;
@@ -31,6 +32,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
         }
 
         private bool _isReady = false;
+        private bool _hasStarted = false;
         private Vector2 _playerPosition;
 
         private void Awake()
@@ -39,8 +41,11 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Assert.IsNotNull(_cameraTransform);
             Assert.IsNotNull(_playerVisualTransform);
             Assert.IsNotNull(_fogOfWar);
+            Assert.IsNotNull(_timer);
 
             RegisterMessageListeners();
+
+            Clear();
         }
 
         private void OnDestroy()
@@ -99,6 +104,12 @@ namespace fireMCG.PathOfLayouts.Gameplay
             _cameraTransform.anchoredPosition = -PlayerPixelPosition;
 
             _fogOfWar.RevealAt(PlayerPixelPosition, _lightRadiusPercent);
+
+            if(!_hasStarted && moveDirection.sqrMagnitude != 0)
+            {
+                _timer.SetTimerState(true);
+                _hasStarted = true;
+            }
         }
 
         public void Initialize()
@@ -116,6 +127,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
         public void Clear()
         {
             _isReady = false;
+            _hasStarted = false;
             _cameraTransform.anchoredPosition = Vector2.zero;
             _playerPosition = Vector2.zero;
         }

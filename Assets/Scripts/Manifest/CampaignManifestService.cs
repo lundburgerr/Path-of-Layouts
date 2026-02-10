@@ -1,4 +1,4 @@
-using fireMCG.PathOfLayouts.Common;
+using fireMCG.PathOfLayouts.IO;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -12,16 +12,9 @@ namespace fireMCG.PathOfLayouts.Manifest
     {
         public CampaignManifest Manifest { get; private set; }
 
-        private static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings()
-        {
-            Formatting = Formatting.Indented,
-            MissingMemberHandling = MissingMemberHandling.Ignore,
-            NullValueHandling = NullValueHandling.Ignore,
-        };
-
         public async Task LoadManifestAsync()
         {
-            string json = await ReadStreamingAssetsTextAsync(PathResolver.GetManifestFilePath());
+            string json = await ReadStreamingAssetsTextAsync(StreamingPathResolver.GetManifestFilePath());
             CampaignManifest manifest = JsonConvert.DeserializeObject<CampaignManifest>(json);
 
             if(manifest is null)

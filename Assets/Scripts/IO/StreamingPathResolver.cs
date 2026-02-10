@@ -1,14 +1,12 @@
 using System.IO;
 using UnityEngine;
 
-namespace fireMCG.PathOfLayouts.Common
+namespace fireMCG.PathOfLayouts.IO
 {
-    public static class PathResolver
+    public static class StreamingPathResolver
     {
         public const string ROOT_FOLDER = "Campaign";
         public const string MANIFEST_FILE_NAME = "campaign_manifest.json";
-        public const string SRS_SAVE_FILE_NAME = "srs_save.json";
-        public const string LAYOUT_PARAMS_FILE_NAME = "layout_params.json";
         public const string LAYOUT_SUFFIX = ".layout.png";
         public const string COLLISION_MAP_SUFFIX = ".collision.png";
         public const string GRAPH_RENDER_SUFFIX = ".render.png";

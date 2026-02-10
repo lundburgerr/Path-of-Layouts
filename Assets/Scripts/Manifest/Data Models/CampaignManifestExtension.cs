@@ -1,4 +1,4 @@
-using fireMCG.PathOfLayouts.Common;
+using fireMCG.PathOfLayouts.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +23,7 @@ namespace fireMCG.PathOfLayouts.Manifest
 
         public static IReadOnlyList<string> GetLayoutIds(this CampaignManifest manifest, string actId, string areaId, string graphId)
         {
-            string path = PathResolver.GetGraphFolderPath(actId, areaId, graphId);
+            string path = StreamingPathResolver.GetGraphFolderPath(actId, areaId, graphId);
 
             if (!Directory.Exists(path))
             {
@@ -32,8 +32,8 @@ namespace fireMCG.PathOfLayouts.Manifest
 
             string[] suffixes = new[]
             {
-                PathResolver.LAYOUT_SUFFIX,
-                PathResolver.COLLISION_MAP_SUFFIX
+                StreamingPathResolver.LAYOUT_SUFFIX,
+                StreamingPathResolver.COLLISION_MAP_SUFFIX
             };
 
             HashSet<string> layoutIds = new();

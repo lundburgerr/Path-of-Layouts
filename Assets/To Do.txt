@@ -1,0 +1,75 @@
+Data Persistence:
+- Json File Store
+- Srs Data File
+- Layout Params File
+- Gameplay Settings File
+
+Spaced Repetition System:
+- Data models
+- Learning center Ui
+- Learning queue
+- Layout browser Srs functionality
+- - Add/Remove buttons
+- Gameplay Ui
+- Gameplay inputs
+
+Layout Parameters:
+- Load parameters on startup
+- Display name
+- - Update learning center and layout browser names based on layout params
+- Filtering
+- - Implement Ui and logic for filtering layouts based on their custom flags
+- Params settings menu
+- - Create settings Ui for modifying a target layout's parameters
+- - Save on apply
+- - Open the menu upon selecting a layout in the layout nav window of the layout browser
+
+Shader Rewrite:
+- Current fog and fog stamp shaders aren't compatible when building the client
+- Must read on Unity shader structure in order to rewrite them
+
+Triggers:
+- Add node detection as part of the player collision logic in order to fire events when in a given radius of a node
+- Add interaction input which can be triggered when in the radius of a node
+- Add node types
+- - Entrance
+- - Checkpoint
+
+Checkpoints:
+- Add Ui which replicates the in game Ui for checkpoint teleportation
+- Implement logic to allow users to teleport from and to any visited checkpoint
+
+Splits:
+- Add a timer which starts upon receiving the first player input after spawning
+- Add an input to stop the timer
+
+Player Path:
+- Calculate the distance traveled of the player from time start to time end
+- Display traveled distance in real time
+- Display traveled path when prompted by the player
+
+Layout Browser:
+- Area Container Ui
+- Area Buttons Ui Prefab
+- Graph Container Ui
+- Graph Buttons Ui Prefab
+- Layout Container Ui
+- Layout Buttons Ui Prefab
+
+Collisions:
+- Once CivilianLP's tool is ready, implement play collisions
+- Add collision boolean to player settings to make collisions optional
+- Modify fog shader to only apply edge colour to the walkable grid cells of the collision map
+
+Mobile Refactoring:
+- Define what is needed to support Android
+
+Brainstorm:
+- How to make it possible to link one graph's entrance node to another graph's
+- Should we somehow start using the graph data
+- How to define what is the starting and ending node
+- Should collision maps be computed once and saved to file
+- Should collision maps be computed by an external tool and saved to a unique extension instead of as PNG data
+- - This would avoid the need to png loading, compressing and resizing
+- - This would avoid the need to compute the collision map at runtime
+- - This could allow users to define their node path and node behaviour and save it to the collision map file
