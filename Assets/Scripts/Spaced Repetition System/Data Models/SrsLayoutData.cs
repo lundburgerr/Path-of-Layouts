@@ -6,18 +6,6 @@ namespace fireMCG.PathOfLayouts.Srs
     [Serializable]
     public sealed class SrsLayoutData
     {
-        [JsonProperty("actId")]
-        public string actId;
-
-        [JsonProperty("areaId")]
-        public string areaId;
-
-        [JsonProperty("graphId")]
-        public string graphId;
-
-        [JsonProperty("layoutId")]
-        public string layoutId;
-
         [JsonProperty("isLearning")]
         public bool isLearning;
 
@@ -42,14 +30,8 @@ namespace fireMCG.PathOfLayouts.Srs
         [JsonProperty("streak")]
         public int streak;
 
-        public SrsLayoutData() { }
-
-        public SrsLayoutData(string actId, string areaId, string graphId, string layoutId)
+        public SrsLayoutData()
         {
-            this.actId = actId;
-            this.areaId = areaId;
-            this.graphId = graphId;
-            this.layoutId = layoutId;
             isLearning = false;
             masteryLevel = 0;
             timesPracticed = 0;

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Srs
 {
@@ -15,23 +16,13 @@ namespace fireMCG.PathOfLayouts.Srs
             TimeSpan.FromDays(7),       // 6
             TimeSpan.FromDays(14),      // 7
             TimeSpan.FromDays(30),      // 8
-            TimeSpan.FromDays(90)       // 9
+            TimeSpan.FromDays(90),      // 9
+            TimeSpan.MaxValue,          // Burnt
         };
 
         public static int ClampMastery(int masteryLevel)
         {
-            if(masteryLevel < 0)
-            {
-                return 0;
-            }
-
-            int max = MasteryIntervals.Length - 1;
-            if(masteryLevel > max)
-            {
-                return max;
-            }
-
-            return masteryLevel;
+            return Mathf.Clamp(masteryLevel, 0, MasteryIntervals.Length - 1);
         }
 
         public static DateTime ComputeNextDueDate(DateTime utcNow, int newMasteryLevel)

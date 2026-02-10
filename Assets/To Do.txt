@@ -7,10 +7,11 @@ Cached Gameplay Entry Behaviour:
 
 Data Persistence:
 - Layout Params File
+- - Layout Params Service
 - Gameplay Settings File
+- - Gameplay Settings Service
 
 Spaced Repetition System:
-- Srs logic
 - Learning center Ui
 - Layout browser Srs functionality
 - - Add/Remove buttons

@@ -1,3 +1,4 @@
+using fireMCG.PathOfLayouts.Common;
 using System;
 
 namespace fireMCG.PathOfLayouts.Srs
@@ -11,8 +12,11 @@ namespace fireMCG.PathOfLayouts.Srs
 
         public static DateTime GetDueDateTime(this SrsLayoutData data)
         {
-            DateTime.TryParse(data.lastPracticedUtc, out DateTime lastPracticed);
-
+            if(!DateTimeExtension.TryParseIsoUtc(data.lastPracticedUtc, out DateTime lastPracticed))
+            {
+                lastPracticed = DateTime.UtcNow;
+            }
+            
             return lastPracticed.Add(SrsScheduler.MasteryIntervals[data.masteryLevel]);
         }
     }
