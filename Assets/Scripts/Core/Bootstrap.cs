@@ -1,3 +1,4 @@
+using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Srs;
@@ -69,6 +70,7 @@ namespace fireMCG.PathOfLayouts.Core
             try
             {
                 await SrsService.LoadSrsSaveDataAsync(token);
+                MessageBusManager.Resolve.Publish(new RegisterPersistableMessage(SrsService));
             }
             catch (System.OperationCanceledException)
             {
@@ -79,6 +81,7 @@ namespace fireMCG.PathOfLayouts.Core
                 Debug.LogWarning($"Bootstrap.InitializeAsync error, Srs failed to load, continuing with defaults. e={e}");
 
                 SrsService.SetDefaultData();
+                // Don't register the persistable in order to acoid overwriting data.
             }
         }
     }

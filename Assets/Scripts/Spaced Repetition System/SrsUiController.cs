@@ -39,16 +39,21 @@ namespace fireMCG.PathOfLayouts.Srs
         {
             UnregisterMessageListeners();
 
-            MessageBusManager.Resolve.Subscribe<OnBootstrapReadyMessage>(Initialize);
+            MessageBusManager.Resolve.Subscribe<OnAppStateChanged>(UpdateView);
         }
 
         private void UnregisterMessageListeners()
         {
-            MessageBusManager.Resolve.Unsubscribe<OnBootstrapReadyMessage>(Initialize);
+            MessageBusManager.Resolve.Unsubscribe<OnAppStateChanged>(UpdateView);
         }
 
-        private void Initialize(OnBootstrapReadyMessage message)
+        private void UpdateView(OnAppStateChanged message)
         {
+            if(message.NewState != StateController.AppState.LearningCenter)
+            {
+                return;
+            }
+
             FillDueWithinStatistics();
         }
 

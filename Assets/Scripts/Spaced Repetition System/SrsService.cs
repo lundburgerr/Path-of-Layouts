@@ -8,13 +8,25 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace fireMCG.PathOfLayouts.Srs
 {
-    public class SrsService
+    public class SrsService : IPersistable
     {
         public SrsSaveData SrsData { get; private set; }
+
+        public bool IsDirty { get; private set; }
+
+        public string Name => "Srs";
+
+        public void MarkClean() => IsDirty = false;
+
+        public void MarkDirty()
+        {
+            IsDirty = true;
+
+            MessageBusManager.Resolve.Publish(new OnPersistableSetDirtyMessage());
+        }
 
         public async Task LoadSrsSaveDataAsync(CancellationToken token)
         {
@@ -31,8 +43,13 @@ namespace fireMCG.PathOfLayouts.Srs
             }
         }
 
-        public async Task SaveSrsDataAsync(CancellationToken token)
+        public async Task SaveAsync(CancellationToken token)
         {
+            if (!IsDirty)
+            {
+                return;
+            }
+
             token.ThrowIfCancellationRequested();
 
             if(SrsData is null)
@@ -44,6 +61,8 @@ namespace fireMCG.PathOfLayouts.Srs
                 PersistentPathResolver.GetSrsFilePath(),
                 SrsData,
                 token);
+
+            MarkClean();
         }
 
         public void SetDefaultData()
@@ -60,9 +79,9 @@ namespace fireMCG.PathOfLayouts.Srs
 
             SrsLayoutData layoutData;
 
-            if (SrsData.layouts.TryGetValue(srsEntryKey, out SrsLayoutData data))
+            if (SrsData.layouts.TryGetValue(srsEntryKey, out layoutData))
             {
-                data.isLearning = true;
+                layoutData.isLearning = true;
             }
             else
             {
@@ -73,6 +92,8 @@ namespace fireMCG.PathOfLayouts.Srs
 
                 SrsData.layouts.Add(srsEntryKey, layoutData);
             }
+
+            MarkDirty();
 
             // To do: Srs Layout Added/Enabled Message(s)
 
@@ -92,6 +113,8 @@ namespace fireMCG.PathOfLayouts.Srs
             }
 
             data.isLearning = false;
+
+            MarkDirty();
 
             // To do: Srs Layout Removed/Disabled Message(s)
 
@@ -127,6 +150,8 @@ namespace fireMCG.PathOfLayouts.Srs
             data.lastResult = result.ToString();
 
             data.lastPracticedUtc = DateTime.UtcNow.ToIsoUtc();
+
+            MarkDirty();
 
             // To do: Srs Layout Practice Recorded Message
         }
