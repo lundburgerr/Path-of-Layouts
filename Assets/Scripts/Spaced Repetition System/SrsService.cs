@@ -179,6 +179,15 @@ namespace fireMCG.PathOfLayouts.Srs
             return ApplyLimit(query, limit).ToList();
         }
 
+        public int GetLayoutsDueWithin(TimeSpan timeSpan)
+        {
+            DateTime dueWithinData = DateTime.UtcNow.Add(timeSpan);
+
+            return SrsData.layouts.Values
+                .Where(l => l.isLearning && l.GetDueDateTime() < dueWithinData)
+                .Count();
+        }
+
         public bool IsLayoutDue(SrsLayoutData layoutData, DateTime? nowUtc = null)
         {
             if (layoutData is null || !layoutData.isLearning)

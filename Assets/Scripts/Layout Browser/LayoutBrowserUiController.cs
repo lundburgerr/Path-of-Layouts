@@ -54,8 +54,6 @@ namespace fireMCG.PathOfLayouts.Ui
             Assert.IsNotNull(_areaCardPrefab);
             Assert.IsNotNull(_graphCardPrefab);
             Assert.IsNotNull(_layoutCardPrefab);
-
-            ResetUi();
         }
 
         public void OpenMainMenu()

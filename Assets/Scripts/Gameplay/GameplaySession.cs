@@ -25,10 +25,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Assert.IsNotNull(_playerController);
             Assert.IsNotNull(_collisionMap);
             Assert.IsNotNull(_fogOfWar);
-        }
 
-        private void Start()
-        {
             RegisterMessageListeners();
         }
 
