@@ -206,7 +206,7 @@ namespace fireMCG.PathOfLayouts.Srs
         {
             if (string.IsNullOrWhiteSpace(key))
             {
-                return true;
+                return false;
             }
 
             string details =
@@ -216,7 +216,7 @@ namespace fireMCG.PathOfLayouts.Srs
 
             LogAndPublishError(methodName, "key is invalid", key, details);
 
-            return false;
+            return true;
         }
 
         private bool TryGetKeyValue(string key, string methodName, string userFacingHeader, out SrsLayoutData srsLayoutData)
