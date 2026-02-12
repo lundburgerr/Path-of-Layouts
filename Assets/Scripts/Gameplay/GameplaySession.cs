@@ -1,8 +1,10 @@
+using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Messaging;
 using UnityEngine.Assertions;
 using UnityEngine;
 using UnityEngine.UI;
+using fireMCG.PathOfLayouts.Srs;
 
 namespace fireMCG.PathOfLayouts.Gameplay
 {
@@ -40,12 +42,14 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             MessageBusManager.Resolve.Subscribe<OnLayoutLoadedMessage>(OnLayoutLoaded);
             MessageBusManager.Resolve.Subscribe<OnReplayLayoutMessage>(OnReplayLayout);
+            MessageBusManager.Resolve.Subscribe<RecordSrsResultMessage>(RecordSrsResult);
         }
 
         private void UnregisterMessageListeners()
         {
             MessageBusManager.Resolve.Unsubscribe<OnLayoutLoadedMessage>(OnLayoutLoaded);
             MessageBusManager.Resolve.Unsubscribe<OnReplayLayoutMessage>(OnReplayLayout);
+            MessageBusManager.Resolve.Unsubscribe<RecordSrsResultMessage>(RecordSrsResult);
         }
 
         private void OnLayoutLoaded(OnLayoutLoadedMessage message)
@@ -100,6 +104,17 @@ namespace fireMCG.PathOfLayouts.Gameplay
                     Replay();
                     break;
             }
+        }
+
+        private void RecordSrsResult(RecordSrsResultMessage message)
+        {
+            Bootstrap.Instance.SrsService.RecordPractice(
+                SrsService.GetSrsEntryKey(
+                    _cachedLayoutMessage.ActId,
+                    _cachedLayoutMessage.AreaId,
+                    _cachedLayoutMessage.GraphId,
+                    _cachedLayoutMessage.LayoutId),
+                message.Result);
         }
 
         private void Replay()

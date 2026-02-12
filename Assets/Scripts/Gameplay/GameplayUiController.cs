@@ -1,5 +1,6 @@
 using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.Messaging;
+using fireMCG.PathOfLayouts.Srs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -65,6 +66,16 @@ namespace fireMCG.PathOfLayouts.Gameplay
         public void Quit()
         {
             MessageBusManager.Resolve.Publish(new OnAppStateChangeRequest(StateController.PreviousState));
+        }
+
+        public void RecordSrsSuccess()
+        {
+            MessageBusManager.Resolve.Publish(new RecordSrsResultMessage(SrsPracticeResult.Success));
+        }
+
+        public void RecordSrsFailure()
+        {
+            MessageBusManager.Resolve.Publish(new RecordSrsResultMessage(SrsPracticeResult.Failure));
         }
     }
 }
