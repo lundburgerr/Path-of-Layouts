@@ -38,10 +38,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Assert.IsNotNull(_fogStampMaterial);
 
             _fogImage.material = _fogMaterial;
-            
-            Debug.Log($"Fog shader: {_fogMaterial.shader.name}, supported={_fogMaterial.shader.isSupported}");
-            Debug.Log($"Stamp shader: {_fogStampMaterial.shader.name}, supported={_fogStampMaterial.shader.isSupported}");
-            Debug.Log($"RawImage shader: {_fogImage.material.shader.name}, supported={_fogImage.material.shader.isSupported}");
         }
 
         private void OnDestroy()

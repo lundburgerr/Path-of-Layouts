@@ -2,6 +2,8 @@ Shader "Custom/PathOfLayouts/FogStamp"
 {
     Properties
     {
+        [MainTexture] _MainTex ("Base (RGB)", 2D) = "white" {}
+
         _Split        ("Split (0..1 across soft ring)", Range(0,1)) = 0.5
         _MidReveal    ("Reveal at Split", Range(0,1)) = 0.2
         _PowA         ("Inner Curve Power", Range(0.1, 6)) = 1.0
@@ -10,7 +12,7 @@ Shader "Custom/PathOfLayouts/FogStamp"
 
     SubShader
     {
-        Tags { "RenderPipeline"="UniversalRenderPipeline" }
+        Tags { "RenderPipeline"="UniversalPipeline" }
 
         Pass
         {

@@ -2,6 +2,8 @@ Shader "Custom/PathOfLayouts/Fog"
 {
     Properties
     {
+        [MainTexture] _MainTex ("Base (RGB)", 2D) = "white" {}
+
         _FogMask   ("Fog Mask (R: 1=fog, 0=revealed)", 2D) = "white" {}
 
         _FogAlpha  ("Fog Alpha",  Range(0,1)) = 1
@@ -21,7 +23,7 @@ Shader "Custom/PathOfLayouts/Fog"
         {
             "Queue"="Transparent"
             "RenderType"="Transparent"
-            "RenderPipeline"="UniversalRenderPipeline"
+            "RenderPipeline"="UniversalPipeline"
         }
 
         Pass

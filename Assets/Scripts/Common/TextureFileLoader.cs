@@ -1,8 +1,6 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using System.IO;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Common
