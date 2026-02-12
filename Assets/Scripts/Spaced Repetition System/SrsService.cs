@@ -228,7 +228,7 @@ namespace fireMCG.PathOfLayouts.Srs
             DateTime dueBefore = DateTime.UtcNow.Add(timeSpan);
 
             return SrsData.layouts.Values
-                .Where(l => l.isLearning && ((l.GetDueDateTime() > dueAfter && l.GetDueDateTime() < dueBefore) || l.timesPracticed < 1))
+                .Where(l => l.isLearning && (l.GetDueDateTime() >= dueAfter && l.GetDueDateTime() < dueBefore))
                 .Count();
         }
 

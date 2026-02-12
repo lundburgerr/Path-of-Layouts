@@ -14,9 +14,9 @@ namespace fireMCG.PathOfLayouts.Srs
         {
             if(!DateTimeExtension.TryParseIsoUtc(data.lastPracticedUtc, out DateTime lastPracticed))
             {
-                lastPracticed = DateTime.MaxValue;
+                lastPracticed = DateTime.MinValue;
             }
-            
+
             return lastPracticed.Add(SrsScheduler.MasteryIntervals[data.masteryLevel]);
         }
     }
