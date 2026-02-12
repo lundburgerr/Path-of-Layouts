@@ -1,7 +1,3 @@
-In Game Layout Display:
-- Add an option to show the DGR name
-- Add an option to show the Layout name
-
 Data Persistence:
 - Layout Params File
 - - Layout Params Service
@@ -29,8 +25,6 @@ Spaced Repetition System:
 - - All Window
 - - Show/Hide entries
 - - Play random due entry
-- Success and failure conditions
-- - Gameplay inputs
 
 Layout Parameters:
 - Load parameters on startup
@@ -80,7 +74,7 @@ Brainstorm:
 - Should we somehow start using the graph data
 - How to define what is the starting and ending node
 - Should collision maps be computed once and saved to file
-- Should collision maps be computed by an external tool and saved to a unique extension instead of as PNG data
-- - This would avoid the need to png loading, compressing and resizing
+- Should collision maps be computed by an external tool and saved as precomputed serialized data instead of computing them at runtime via png files
+- - This would avoid the need to load, compressand resize pngs
 - - This would avoid the need to compute the collision map at runtime
 - - This could allow users to define their node path and node behaviour and save it to the collision map file

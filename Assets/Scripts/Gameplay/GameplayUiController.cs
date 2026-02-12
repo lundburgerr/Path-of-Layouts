@@ -2,6 +2,8 @@ using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Srs;
+using System.Globalization;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -17,6 +19,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
         [SerializeField] private Button _successButton;
         [SerializeField] private Button _failureButton;
         [SerializeField] private Button _randomReplayButton;
+        [SerializeField] private TMP_Text _areaName;
 
         private void Awake()
         {
@@ -63,6 +66,8 @@ namespace fireMCG.PathOfLayouts.Gameplay
             SetSrsState(Bootstrap.Instance.SrsService.IsLayoutDue(srsEntryKey));
 
             _randomReplayButton.interactable = message.LayoutLoadingMethod != LayoutLoader.LayoutLoadingMethod.TargetLayout;
+
+            _areaName.text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(message.AreaId.Replace('_', ' '));
         }
 
         public void SetSrsState(bool enabled)
