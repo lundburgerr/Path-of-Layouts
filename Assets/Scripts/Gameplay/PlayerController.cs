@@ -46,6 +46,9 @@ namespace fireMCG.PathOfLayouts.Gameplay
             RegisterMessageListeners();
 
             Clear();
+
+            _movementSpeedPercent = PlayerPrefs.GetInt("movementSpeed");
+            _lightRadiusPercent = PlayerPrefs.GetInt("lightRadius");
         }
 
         private void OnDestroy()

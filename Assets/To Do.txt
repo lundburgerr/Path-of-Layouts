@@ -1,8 +1,6 @@
 Data Persistence:
 - Layout Params File
 - - Layout Params Service
-- Gameplay Settings File
-- - Gameplay Settings Service
 
 Timer
 - Decouple timer from PlayerController

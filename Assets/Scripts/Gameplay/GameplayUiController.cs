@@ -3,7 +3,6 @@ using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Srs;
 using System.Globalization;
-using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -37,10 +36,8 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         private void Start()
         {
-            // Load gameplay settings save file
-
-            // _movementSpeedField.text = "";
-            // _lightRadiusField.text = "";
+            _movementSpeedField.text = PlayerPrefs.GetInt("movementSpeed").ToString();
+            _lightRadiusField.text = PlayerPrefs.GetInt("lightRadius").ToString();
         }
 
         private void OnDestroy()
@@ -103,8 +100,8 @@ namespace fireMCG.PathOfLayouts.Gameplay
                 Debug.LogError("GameplayUiContrller.ApplySettings error, parsing failed.");
             }
 
-            // Save to file
-
+            PlayerPrefs.SetInt("movementSpeed", movementSpeedPercent);
+            PlayerPrefs.SetInt("lightRadius", lightRadiusPercent);
             MessageBusManager.Resolve.Publish(new OnGameplaySettingsChangedMessage(movementSpeedPercent, lightRadiusPercent));
         }
 
