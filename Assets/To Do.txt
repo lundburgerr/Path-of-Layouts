@@ -13,6 +13,11 @@ Data Persistence:
 
 Spaced Repetition System:
 - Learning center Ui
+- - Due window
+- - Upcoming Window
+- - Disabled Window
+- - Burnt Window
+- - All Window
 - Success and failure conditions
 - - Gameplay Ui
 - - Gameplay inputs
