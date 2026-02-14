@@ -7,15 +7,16 @@ namespace fireMCG.PathOfLayouts.Gameplay
 {
     public class TimerUiController : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private TMP_Text timerText;
 
-        private Timer _timer;
+        // To do: Stop being lazy
+        public static Timer timer;
 
         private void Awake()
         {
-            Assert.IsNotNull(_timerText);
+            Assert.IsNotNull(timerText);
 
-            _timer = new Timer();
+            timer = new Timer();
         }
 
         private void OnEnable()
@@ -34,16 +35,16 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                _timer.Toggle();
+                timer.Toggle();
             }
 
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                _timer.Restart();
+                timer.Restart();
             }
 
-            _timer.Tick(Time.deltaTime);
-            _timerText.text = _timer.ToString();
+            timer.Tick(Time.deltaTime);
+            timerText.text = timer.ToString();
         }
 
         private void RegisterMessageListeners()
@@ -60,10 +61,10 @@ namespace fireMCG.PathOfLayouts.Gameplay
             MessageBusManager.Instance.Unsubscribe<RestartTimerMessage>(OnRestartTimerMessage);
         }
 
-        private void OnStartTimerMessage(StartTimerMessage message) => _timer.Start();
+        private void OnStartTimerMessage(StartTimerMessage message) => timer.Start();
 
-        private void OnPauseTimerMessage(PauseTimerMessage message) => _timer.Pause();
+        private void OnPauseTimerMessage(PauseTimerMessage message) => timer.Pause();
 
-        private void OnRestartTimerMessage(RestartTimerMessage message) => _timer.Restart();
+        private void OnRestartTimerMessage(RestartTimerMessage message) => timer.Restart();
     }
 }

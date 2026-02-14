@@ -19,5 +19,15 @@ namespace fireMCG.PathOfLayouts.Srs
 
             return lastPracticed.Add(SrsScheduler.MasteryIntervals[data.masteryLevel]);
         }
+
+        public static float GetRunningAverageTime(this SrsLayoutData data, float newTimeSeconds)
+        {
+            if (data.timesPracticed == 0)
+            {
+                return newTimeSeconds;
+            }
+
+            return ((data.averageTimeSeconds * data.timesPracticed) + newTimeSeconds) / (data.timesPracticed + 1);
+        }
     }
 }

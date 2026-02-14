@@ -141,7 +141,8 @@ namespace fireMCG.PathOfLayouts.Gameplay
                     _replayContext.AreaId,
                     _replayContext.GraphId,
                     _replayContext.LayoutId),
-                message.Result);
+                message.Result,
+                TimerUiController.timer.Time);
         }
 
         private void Replay()

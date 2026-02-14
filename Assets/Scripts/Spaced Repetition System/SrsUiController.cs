@@ -155,9 +155,15 @@ namespace fireMCG.PathOfLayouts.Srs
             _succeededText.text = data.timesSucceeded.ToString();
             _failedText.text = data.timesFailed.ToString();
             _successRateText.text = ((float)data.timesSucceeded / data.timesPracticed * 100).ToString("F0") + "%";
-            _averageTimeText.text = "";
-            _bestTimeText.text = "";
+
+            // To do: Format the string properly using the timer string formatting
+            _averageTimeText.text = data.averageTimeSeconds.ToString();
+            _bestTimeText.text = data.bestTimeSeconds.ToString();
+
+            // To do: Format due date to be short and easily readable
             _nextPracticeText.text = data.GetDueDateTime().ToString();
+
+            // To do: Change streak label between "Success/Failure Streak" based on the value of data.lastResult
             _streakText.text = data.streak.ToString();
         }
 

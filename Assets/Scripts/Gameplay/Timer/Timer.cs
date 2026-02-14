@@ -17,7 +17,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         public void Toggle() => IsOn = !IsOn;
 
-        public void ResetAndStart()
+        private void ResetAndStart()
         {
             Time = 0f;
             IsOn = true;
@@ -33,6 +33,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Time += delta;
         }
 
+        // To do: Move formatting logic to string formatting script
         public override string ToString()
         {
             int totalSeconds = Mathf.FloorToInt(Time);

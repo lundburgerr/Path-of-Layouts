@@ -42,7 +42,11 @@ namespace fireMCG.PathOfLayouts.Srs
         [JsonProperty("streak")]
         public int streak;
 
-        // public SrsLayoutData() { }
+        [JsonProperty("bestTimeSeconds")]
+        public float bestTimeSeconds;
+
+        [JsonProperty("averageTimeSeconds")]
+        public float averageTimeSeconds;
 
         public SrsLayoutData(string actId, string areaId, string graphId, string layoutId)
         {
@@ -58,6 +62,8 @@ namespace fireMCG.PathOfLayouts.Srs
             lastPracticedUtc = null;
             lastResult = null;
             streak = 0;
+            bestTimeSeconds = 0;
+            averageTimeSeconds = 0;
         }
     }
 }

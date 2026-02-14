@@ -1,15 +1,17 @@
 To Do References:
 TimerUiController.cs
 - Replace Input logic with new Input System
+- Remove ownership of the timer from the Ui controller and give it to the GameplaySession.cs
+- Move formatting logic to a string utility script
+SrsUiController.cs
+- Use the timer string utility to format the best and average times
+- Format the due date in order to show "due" if the next time is past
+- Format the due date in a shorter easily readable string
+- Change the streak label between "Success/Failure streak" based on the value of the SrsLayoutData's last result
 
 - - - - - - - - - - - - - - - - 
 
 General List: (in order of priority)
-
-Timer
-- Add averageCompletionTime to SrsLayoutData
-- Add bestCompletionTime to SrsLayoutData
-- Send time data as part of the record practice message
 
 Spaced Repetition System:
 - Learning center Ui

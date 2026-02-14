@@ -125,7 +125,7 @@ namespace fireMCG.PathOfLayouts.Srs
             return true;
         }
 
-        public void RecordPractice(string srsEntryKey, SrsPracticeResult result)
+        public void RecordPractice(string srsEntryKey, SrsPracticeResult result, float time)
         {
             if (!TryValidateKey(srsEntryKey, "SrsService.RecordPractice", "Error recording practice results"))
             {
@@ -138,7 +138,13 @@ namespace fireMCG.PathOfLayouts.Srs
             }
 
             data.masteryLevel = SrsScheduler.ClampMastery(data.masteryLevel + (result == SrsPracticeResult.Success ? 1 : -1));
-            
+            data.averageTimeSeconds = data.GetRunningAverageTime(time);
+
+            if(data.bestTimeSeconds < time)
+            {
+                data.bestTimeSeconds = time;
+            }
+
             data.timesPracticed++;
             data.timesSucceeded += result == SrsPracticeResult.Success ? 1 : 0;
             data.timesFailed += result == SrsPracticeResult.Failure ? 1 : 0;
