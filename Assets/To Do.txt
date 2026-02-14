@@ -22,9 +22,7 @@ Spaced Repetition System:
 - - All Window
 - - Show/Hide entries
 - - Play random due entry
-- - Select entry without automatically playing
-- - - Show statistics
-- - - Enable/Disable toggle
+- - Enable/Disable isLearning toggle
 
 Replace Manifest and Folder Logic:
 - Move shipped layouts out of Streaming Assets in order to be able to compress at build time and utilize Unity's faster loading pipeline

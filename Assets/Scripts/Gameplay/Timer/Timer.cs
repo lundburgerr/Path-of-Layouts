@@ -5,23 +5,25 @@ namespace fireMCG.PathOfLayouts.Gameplay
     public class Timer
     {
         public float Time { get; private set; }
-        public bool IsOn { get; private set; }
+        public bool IsOn { get; private set; } = false;
 
-        public void Start() => ResetAndStart();
+        public void Start()
+        {
+            Time = 0f;
+            IsOn = true;
+        }
 
-        public void Restart() => ResetAndStart();
+        public void Restart()
+        {
+            Time = 0f;
+            IsOn = false;
+        }
 
         public void Pause() => IsOn = false;
 
         public void Resume() => IsOn = true;
 
         public void Toggle() => IsOn = !IsOn;
-
-        private void ResetAndStart()
-        {
-            Time = 0f;
-            IsOn = true;
-        }
 
         public void Tick(float delta)
         {

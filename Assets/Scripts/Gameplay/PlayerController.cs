@@ -1,7 +1,7 @@
-using UnityEngine.Assertions;
-using UnityEngine;
 using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.Messaging;
+using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 namespace fireMCG.PathOfLayouts.Gameplay
@@ -86,7 +86,12 @@ namespace fireMCG.PathOfLayouts.Gameplay
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && EventSystem.current.IsPointerOverGameObject())
+            var data = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Vector2 mousePixelPosition = Input.mousePosition;
                 Vector2 screenCenter = new Vector2(Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);

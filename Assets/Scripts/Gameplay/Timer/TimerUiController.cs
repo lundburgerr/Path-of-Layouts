@@ -17,6 +17,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Assert.IsNotNull(timerText);
 
             timer = new Timer();
+            timerText.text = timer.ToString();
         }
 
         private void OnEnable()
@@ -40,7 +41,12 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                timer.Restart();
+                RestartTimer();
+            }
+
+            if (!timer.IsOn)
+            {
+                return;
             }
 
             timer.Tick(Time.deltaTime);
@@ -65,6 +71,15 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         private void OnPauseTimerMessage(PauseTimerMessage message) => timer.Pause();
 
-        private void OnRestartTimerMessage(RestartTimerMessage message) => timer.Restart();
+        private void OnRestartTimerMessage(RestartTimerMessage message)
+        {
+            RestartTimer();
+        }
+
+        private void RestartTimer()
+        {
+            timer.Restart();
+            timerText.text = timer.ToString();
+        }
     }
 }
