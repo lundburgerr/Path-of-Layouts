@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 559d742b2f57cf044b950090a4632621
+  m_SerializeEntries:
+  - m_GUID: 3462de71ef8459f47b510f25aafdfef0
+    m_Address: Assets/Data/Campaign/Act 1/Grelwood_Thumbnail.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ff87030cd4aeaa48a1c3ab81fd7a9a5
+    m_Address: Assets/Data/Campaign/Act 1/Clearfell_Thumbnail.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9b86c132ac10e354b8d4902fd575a654, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ce4a32db84d21ac4fa8bbac58168ad1f, type: 2}
+    - {fileID: 11400000, guid: 21fff3d491b945b428d3d08ca74a1047, type: 2}

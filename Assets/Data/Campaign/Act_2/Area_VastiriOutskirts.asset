@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba1da9599b6b98b4a8def0514c5dc416, type: 3}
-  m_Name: Area_Clearfell
+  m_Name: Area_VastiriOutskirts
   m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Campaign.AreaDef
-  id: 5769f4e4719a38c41a4c8d725229d667
-  displayName: Clearfell
+  id: 1684fa4b4b266294bb9200e7c3e5818e
+  displayName: Vastiri Outskirts
   thumbnail: {fileID: 0}
   graphs:
-  - {fileID: 11400000, guid: d3e2f56210dc3bc4798827178d5a068f, type: 2}
-  - {fileID: 11400000, guid: c84ff471b85619544b9b5d4086fe5c7f, type: 2}
+  - {fileID: 11400000, guid: bb58c4607ad49354892bcb1d79225294, type: 2}
   graphCount: 0

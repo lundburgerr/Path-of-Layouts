@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Graph_Renders_Local
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Graph_Renders_Local
+  m_GUID: e2f00274eaad5f64382d4d354a6218bd
+  m_SerializeEntries:
+  - m_GUID: 9df5db3098871b94aa66530ee49400c4
+    m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_S.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adcb530563b4cfa48802641d2c1e5846
+    m_Address: Assets/Data/Campaign/Act 1/Grelwood/Grelwood_E_N.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da31605c78ca87745945d49c98be5553
+    m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_W.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9b86c132ac10e354b8d4902fd575a654, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 349b230e301c81948a587f619ca84c14, type: 2}
+    - {fileID: 11400000, guid: df24bcd694e001746b465d5cdfb2a923, type: 2}

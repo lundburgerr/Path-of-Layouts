@@ -17,24 +17,6 @@ Replace Manifest and Folder Logic:
 - Ship app with a layout for each graph
 - Remove DGRs and TGRs
 - Replace the manifest for shipped layouts with an asset database
-- Utilize scriptable objects for the asset database
-- Asset database structure:
-- - Act
-- - - Id
-- - - Display Name
-- - - Area
-- - - - Id
-- - - - Display Name
-- - - - Custom Thumbnail
-- - - - DGR/TGR[]
-- - - - - Id
-- - - - - Display Name
-- - - - - DGR/TGR Render Thumbnail
-- - - - - Layout[]
-- - - - - - Id
-- - - - - - Display Name
-- - - - - - Cropped and Normalized Size Layout PNG
-- - - - - - Pre-Computed Collision Map
 - Utilize Asset database structure to build paths for user imported screenshots
 - - Use Ids as folder names E.g. act_1 -> .../act_1/
 - - Use Persistent Data Path for user imported layouts (Read/Write) instead of Streaming Assets
@@ -44,7 +26,6 @@ Replace Manifest and Folder Logic:
 - - - Checkpoint, entrance, other?
 - - Save data to the collision map scriptable object when in editor
 - - Save data to a serialized object (same structure as the scriptable object) when using the node editor at runtime
-- Look into Addressables
 
 Collisions:
 - Once CivilianLP's tool is ready, implement play collisions

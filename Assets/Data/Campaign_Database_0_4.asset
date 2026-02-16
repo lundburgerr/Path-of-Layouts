@@ -16,8 +16,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e4ef3ca289307f43bb2e6e7e076f423, type: 2}
   allAreas:
   - {fileID: 11400000, guid: 5769f4e4719a38c41a4c8d725229d667, type: 2}
+  - {fileID: 11400000, guid: 8f02449cbecb563458595984ee20b998, type: 2}
+  - {fileID: 11400000, guid: 1684fa4b4b266294bb9200e7c3e5818e, type: 2}
+  - {fileID: 11400000, guid: 78199e9df326506499308ca733b75e9c, type: 2}
+  - {fileID: 11400000, guid: ad0594b18c9251d41bb67422be06cead, type: 2}
   allGraphs:
   - {fileID: 11400000, guid: d3e2f56210dc3bc4798827178d5a068f, type: 2}
+  - {fileID: 11400000, guid: c84ff471b85619544b9b5d4086fe5c7f, type: 2}
+  - {fileID: 11400000, guid: 4eca34a023e9488418e679add9d62e3a, type: 2}
+  - {fileID: 11400000, guid: bb58c4607ad49354892bcb1d79225294, type: 2}
+  - {fileID: 11400000, guid: 60a3cb8fa86a9bb4a9a63cbfd170fb3b, type: 2}
+  - {fileID: 11400000, guid: 096bb2ea50c9cec4bb769a2042d9172f, type: 2}
   allLayouts:
   - {fileID: 11400000, guid: 3438e07367709ad488cffcb4c35e4d9f, type: 2}
+  - {fileID: 11400000, guid: 13e49feb1776ba04d8905f453323525c, type: 2}
+  - {fileID: 11400000, guid: 998fc3346158d2046a3554734983d25e, type: 2}
+  - {fileID: 11400000, guid: 54e344de2f43d904187363e118ede4ed, type: 2}
+  - {fileID: 11400000, guid: 2356fb93d87c12c438b4ec9ff4258931, type: 2}
+  - {fileID: 11400000, guid: e53606ecd30710a468c1c3856e85a55f, type: 2}
+  - {fileID: 11400000, guid: 89c839e081ba74b4daa3c0ece67f0e0a, type: 2}
   allNavigationData: []

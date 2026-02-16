@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb19376d13051cd49a5eefc7dec35d78, type: 3}
-  m_Name: Graph_Felling_N_E_S
+  m_Name: Graph_ShrikeIsland_01
   m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Campaign.GraphDef
-  id: d3e2f56210dc3bc4798827178d5a068f
-  displayName: Clearfell_N_E_S
+  id: 096bb2ea50c9cec4bb769a2042d9172f
+  displayName: Shrike Island 01
   tagSet:
     tags: []
   render:
@@ -23,5 +23,5 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   layouts:
-  - {fileID: 11400000, guid: 3438e07367709ad488cffcb4c35e4d9f, type: 2}
+  - {fileID: 11400000, guid: 89c839e081ba74b4daa3c0ece67f0e0a, type: 2}
   layoutCount: 0
