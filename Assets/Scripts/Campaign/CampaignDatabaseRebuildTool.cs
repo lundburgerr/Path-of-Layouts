@@ -82,8 +82,6 @@ namespace fireMCG.PathOfLayouts.EditorTools
                 database.allLayouts = layouts;
                 database.allNavigationData = navDataAssets;
 
-                UpdateCounts(database);
-
                 EditorUtility.SetDirty(database);
 
                 MarkDirty(database.acts);
@@ -130,48 +128,6 @@ namespace fireMCG.PathOfLayouts.EditorTools
             {
                 Debug.LogError($"CampaignDatabase validation found {errors.Count} issue(s):\n- " + string.Join("\n- ", errors));
                 EditorUtility.DisplayDialog("Validate", $"Found {errors.Count} issue(s). Check Console.", "OK");
-            }
-        }
-
-        private static void UpdateCounts(CampaignDatabase database)
-        {
-            if(database.acts is not null)
-            {
-                foreach(ActDef act in database.acts)
-                {
-                    if(act != null)
-                    {
-                        continue;
-                    }
-
-                    act.areaCount = act.areas is not null ? act.areas.Count(a => a != null) : 0;
-                }
-            }
-
-            if (database.allAreas is not null)
-            {
-                foreach (AreaDef area in database.allAreas)
-                {
-                    if (area != null)
-                    {
-                        continue;
-                    }
-
-                    area.graphCount = area.graphs is not null ? area.graphs.Count(a => a != null) : 0;
-                }
-            }
-
-            if (database.allGraphs is not null)
-            {
-                foreach (GraphDef graph in database.allGraphs)
-                {
-                    if (graph != null)
-                    {
-                        continue;
-                    }
-
-                    graph.layoutCount = graph.layouts is not null ? graph.layouts.Count(g => g != null) : 0;
-                }
             }
         }
 

@@ -8,7 +8,5 @@ namespace fireMCG.PathOfLayouts.Campaign
         public Texture2D thumbnail;
 
         public GraphDef[] graphs;
-
-        public int graphCount;
     }
 }

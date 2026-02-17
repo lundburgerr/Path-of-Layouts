@@ -63,7 +63,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             _randomReplayButton.interactable = message.LayoutLoadingMethod != LayoutLoader.LayoutLoadingMethod.TargetLayout;
 
-            // _areaName.text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(message.AreaId.Replace('_', ' '));
+            _areaName.text = Bootstrap.Instance.CampaignDatabase.GetParentAreaFromLayout(message.LayoutId).displayName;
         }
 
         public void SetSrsState(bool enabled)

@@ -17,4 +17,3 @@ MonoBehaviour:
   thumbnail: {fileID: 0}
   graphs:
   - {fileID: 11400000, guid: bb58c4607ad49354892bcb1d79225294, type: 2}
-  graphCount: 0

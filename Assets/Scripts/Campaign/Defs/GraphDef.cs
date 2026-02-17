@@ -11,7 +11,5 @@ namespace fireMCG.PathOfLayouts.Campaign
         public AssetReferenceT<Texture2D> render;
 
         public LayoutDef[] layouts;
-
-        public int layoutCount;
     }
 }

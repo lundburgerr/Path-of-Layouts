@@ -19,9 +19,13 @@ namespace fireMCG.PathOfLayouts.Campaign
         private Dictionary<string, GraphDef> _graphById;
         private Dictionary<string, LayoutDef> _layoutById;
 
+        private Dictionary<string, ActDef> _areaToAct;
+        private Dictionary<string, AreaDef> _graphToArea;
+        private Dictionary<string, GraphDef> _layoutToGraph;
+
         public bool IsIndexed => _layoutById != null;
 
-        private void OnEnable()
+        private void OnValidate()
         {
             BuildRuntimeIndex();
         }
@@ -33,10 +37,16 @@ namespace fireMCG.PathOfLayouts.Campaign
             _graphById = new Dictionary<string, GraphDef>(StringComparer.Ordinal);
             _layoutById = new Dictionary<string, LayoutDef>(StringComparer.Ordinal);
 
+            _areaToAct = new Dictionary<string, ActDef>(StringComparer.Ordinal);
+            _graphToArea = new Dictionary<string, AreaDef>(StringComparer.Ordinal);
+            _layoutToGraph = new Dictionary<string, GraphDef>(StringComparer.Ordinal);
+
             IndexById(_actById, acts);
             IndexById(_areaById, allAreas);
             IndexById(_graphById, allGraphs);
             IndexById(_layoutById, allLayouts);
+
+            BuildParentMaps();
         }
 
         public void IndexById<T>(Dictionary<string, T> dictionary, IEnumerable<T> items) where T : DefBase
@@ -62,6 +72,79 @@ namespace fireMCG.PathOfLayouts.Campaign
             }
         }
 
+        private void BuildParentMaps()
+        {
+            if (acts is null)
+            {
+                return;
+            }
+
+            foreach (ActDef act in acts)
+            {
+                if (act == null)
+                {
+                    continue;
+                }
+
+                AreaDef[] areas = act.areas;
+                if (areas is null)
+                {
+                    continue;
+                }
+
+                foreach (AreaDef area in areas)
+                {
+                    if (area == null)
+                    {
+                        continue;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(area.id))
+                    {
+                        _areaToAct[area.id] = act;
+                    }
+
+                    GraphDef[] graphs = area.graphs;
+                    if (areas is null)
+                    {
+                        continue;
+                    }
+
+                    foreach (GraphDef graph in graphs)
+                    {
+                        if (graph == null)
+                        {
+                            continue;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(graph.id))
+                        {
+                            _graphToArea[graph.id] = area;
+                        }
+
+                        LayoutDef[] layouts = graph.layouts;
+                        if (layouts is null)
+                        {
+                            continue;
+                        }
+
+                        foreach (LayoutDef layout in layouts)
+                        {
+                            if (layout == null)
+                            {
+                                continue;
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(layout.id))
+                            {
+                                _layoutToGraph[layout.id] = graph;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public ActDef GetAct(string id) => _actById[id];
         public AreaDef GetArea(string id) => _areaById[id];
         public GraphDef GetGraph(string id) => _graphById[id];
@@ -70,11 +153,49 @@ namespace fireMCG.PathOfLayouts.Campaign
         public bool TryGetLayout(string id, out LayoutDef layout)
         {
             layout = null;
+
             return _layoutById is not null && _layoutById.TryGetValue(id, out layout);
         }
 
-        public int GetAreaCount(string actId) => GetAct(actId).areaCount;
-        public int GetGraphCount(string areaId) => GetArea(areaId).graphCount;
-        public int GetLayoutCount(string graphId) => GetGraph(graphId).layoutCount;
+        public ActDef GetParentAct(string areaId)
+        {
+            if(!_areaToAct.TryGetValue(areaId, out ActDef act))
+            {
+                return null;
+            }
+
+            return act;
+        }
+
+        public AreaDef GetParentArea(string graphId)
+        {
+            if (!_graphToArea.TryGetValue(graphId, out AreaDef area))
+            {
+                return null;
+            }
+
+            return area;
+        }
+
+        public GraphDef GetParentGraph(string layoutId)
+        {
+            if (!_layoutToGraph.TryGetValue(layoutId, out GraphDef graph))
+            {
+                return null;
+            }
+
+            return graph;
+        }
+
+        public AreaDef GetParentAreaFromLayout(string layoutId)
+        {
+            GraphDef graph = GetParentGraph(layoutId);
+            if (graph == null)
+            {
+                return null;
+            }
+
+            return GetParentArea(graph.id);
+        }
     }
 }
