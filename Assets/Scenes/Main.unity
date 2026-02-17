@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cemetery of the Eternals
+  m_text: If you see this there's an issue >:)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c09d1e6b5236bfa4db4a98fda8a648da, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 05acd8bfa16c37c4d847c3bf6083fef3, type: 2}

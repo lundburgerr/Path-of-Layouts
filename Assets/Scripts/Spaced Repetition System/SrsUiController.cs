@@ -187,11 +187,13 @@ namespace fireMCG.PathOfLayouts.Srs
 
             foreach(SrsLayoutData entry in entries)
             {
+                string displayName = Bootstrap.Instance.CampaignDatabase.GetLayout(entry.layoutId).displayName;
                 SrsEntryButton button = Instantiate(_entryButtonPrefab, container);
                 button.Initialize(
                     OnSelectEntry,
                     OnPlayEntry,
-                    entry.layoutId);
+                    entry.layoutId,
+                    displayName);
             }
         }
 

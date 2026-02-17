@@ -1,6 +1,5 @@
 using UnityEngine.Assertions;
 using System;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -19,10 +18,9 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
             Assert.IsNotNull(_label);
         }
 
-        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string areaId)
+        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string areaId, string displayName)
         {
-            string areaName = areaId.Replace('_', ' ');
-            _label.text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(areaName);
+            _label.text = displayName;
 
             _selectedCallback = selectedCallback;
             _playCallback = playCallback;

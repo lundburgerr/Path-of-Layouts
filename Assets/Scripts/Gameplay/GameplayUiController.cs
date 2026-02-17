@@ -2,7 +2,6 @@ using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Srs;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;

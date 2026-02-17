@@ -33,11 +33,11 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
             Assert.IsNotNull(_removeFromLearningButton);
         }
 
-        public void Initialize(Action<string> settingsCallback, Action<string> playCallback, string layoutId)
+        public void Initialize(Action<string> settingsCallback, Action<string> playCallback, string layoutId, string displayName)
         {
             _layoutId = layoutId;
 
-            _label.text = layoutId;
+            _label.text = displayName;
 
             _thumbnailImage.texture = null;
 

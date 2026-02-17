@@ -25,9 +25,9 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
             Assert.IsNotNull(_thumbnailImage);
         }
 
-        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string graphId)
+        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string graphId, string displayName)
         {
-            _label.text = graphId;
+            _label.text = displayName;
 
             _thumbnailImage.texture = null;
 

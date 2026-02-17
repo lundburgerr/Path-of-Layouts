@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 namespace fireMCG.PathOfLayouts.Gameplay
 {
-    public class GameplaySession : MonoBehaviour
+    public sealed class GameplaySession : MonoBehaviour
     {
-        public struct ReplayContext
+        public readonly struct ReplayContext
         {
             public readonly string RootId;
             public readonly string LayoutId;

@@ -231,7 +231,7 @@ namespace fireMCG.PathOfLayouts.Ui
 
                 // To do: Implement custom area thumbnails.
                 AreaCard card = Instantiate(_areaCardPrefab, _areaMenuContent);
-                card.Initialize(SelectId, PlayId, area.id);
+                card.Initialize(SelectId, PlayId, area.id, area.displayName);
             }
         }
 
@@ -274,7 +274,7 @@ namespace fireMCG.PathOfLayouts.Ui
                     }
 
                     GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
-                    card.Initialize(SelectId, PlayId, graph.id);
+                    card.Initialize(SelectId, PlayId, graph.id, graph.displayName);
 
                     Texture2D render = await Bootstrap.Instance.ContentService.LoadGraphRenderAsync(graph.id, token);
 
@@ -331,7 +331,7 @@ namespace fireMCG.PathOfLayouts.Ui
                     }
 
                     LayoutCard card = Instantiate(_layoutCardPrefab, _layoutGridContent);
-                    card.Initialize(SelectId, PlayId, layout.id);
+                    card.Initialize(SelectId, PlayId, layout.id, layout.displayName);
 
                     Texture2D layoutImage = await Bootstrap.Instance.ContentService.LoadLayoutImageAsync(layout.id, token);
 
