@@ -18,22 +18,26 @@ MonoBehaviour:
   - m_GUID: 0a0bcaddeed5978409194ebb1f7766cb
     m_Address: Assets/Data/Campaign/Act 1/Grelwood/Grelwood_E_N/Grelwood_E_N-001.png
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - graph_layoutImages__4eca34a023e9488418e679add9d62e3a
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16e0818a48131ef419cc82820ff6fd81
     m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_W/Clearfell_N_E_W-001.png
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - graph_layoutImages__c84ff471b85619544b9b5d4086fe5c7f
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ef5402ad4529584cbc0e1189effb24e
     m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_S/Clearfell_N_E_S-002.png
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - graph_layoutImages__d3e2f56210dc3bc4798827178d5a068f
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50358a5686f35d14181cef63dd5f5b22
     m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_S/Clearfell_N_E_S-001.png
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - graph_layoutImages__d3e2f56210dc3bc4798827178d5a068f
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9b86c132ac10e354b8d4902fd575a654, type: 2}

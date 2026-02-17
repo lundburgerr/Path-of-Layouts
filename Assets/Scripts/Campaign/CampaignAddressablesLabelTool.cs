@@ -15,8 +15,8 @@ namespace fireMCG.PathOfLayouts.EditorTools
     {
         private const string MENU_APPLY = "Tools/Path of Layouts/Campaign/Apply Addressables Labels (Selected DB)";
 
-        private const string GROUP_GRAPH_RENDERS = "Graph_Renders";
-        private const string GROUP_LAYOUT_IMAGES = "Layout_Images";
+        private const string GROUP_GRAPH_RENDERS = "Graph_Renders_Local";
+        private const string GROUP_LAYOUT_IMAGES = "Layout_Images_Local";
 
         [MenuItem(MENU_APPLY)]
         public static void ApplyLabelsToSelectedDatabase()

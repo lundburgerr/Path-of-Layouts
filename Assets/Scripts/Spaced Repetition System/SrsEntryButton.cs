@@ -25,11 +25,11 @@ namespace fireMCG.PathOfLayouts.Srs
             _playButton.onClick.RemoveAllListeners();
         }
 
-        public void Initialize(Action<string> onSelect, Action<string> onPlay, string label, string srsEntryKey)
+        public void Initialize(Action<string> onSelect, Action<string> onPlay, string layoutId)
         {
-            _label.text = label;
-            _selectButton.onClick.AddListener(() => onSelect?.Invoke(srsEntryKey));
-            _playButton.onClick.AddListener(() => onPlay?.Invoke(srsEntryKey));
+            _label.text = layoutId;
+            _selectButton.onClick.AddListener(() => onSelect?.Invoke(layoutId));
+            _playButton.onClick.AddListener(() => onPlay?.Invoke(layoutId));
         }
     }
 }

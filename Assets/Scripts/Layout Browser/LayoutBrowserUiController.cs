@@ -1,12 +1,14 @@
+using fireMCG.PathOfLayouts.Campaign;
 using fireMCG.PathOfLayouts.Core;
-using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.LayoutBrowser.Ui;
 using fireMCG.PathOfLayouts.Layouts;
 using fireMCG.PathOfLayouts.Messaging;
-using UnityEngine.Assertions;
+using fireMCG.PathOfLayouts.Prompt;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
-using fireMCG.PathOfLayouts.Campaign;
+using UnityEngine.Assertions;
 
 namespace fireMCG.PathOfLayouts.Ui
 {
@@ -38,7 +40,8 @@ namespace fireMCG.PathOfLayouts.Ui
         private string _selectedActId = null;
         private string _selectedAreaId = null;
         private string _selectedGraphId = null;
-        private string _selectedLayoutId = null;
+
+        private CancellationTokenSource _populateTokenSource;
 
         private void Awake()
         {
@@ -63,6 +66,13 @@ namespace fireMCG.PathOfLayouts.Ui
         private void OnDisable()
         {
             UnregisterMessageListeners();
+
+            CancelPopulate();
+        }
+
+        private void OnDestroy()
+        {
+            CancelPopulate();
         }
 
         private void RegisterMessageListeners()
@@ -91,10 +101,27 @@ namespace fireMCG.PathOfLayouts.Ui
 
         public void OpenMainMenu()
         {
-            OnAppStateChangeRequest message = new OnAppStateChangeRequest(StateController.AppState.MainMenu);
-            MessageBusManager.Instance.Publish(message);
+            MessageBusManager.Instance.Publish(new OnAppStateChangeRequest(StateController.AppState.MainMenu));
 
             ResetUi();
+        }
+
+        public void SelectActByIndex(int index)
+        {
+            CampaignDatabase database = Bootstrap.Instance.CampaignDatabase;
+            if(database.acts == null || database.acts.Length < 1)
+            {
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to select act. Database acts are null or empty."));
+
+                return;
+            }
+
+            if(index < 0 || database.acts.Length - 1 < index)
+            {
+                throw new System.ArgumentOutOfRangeException();
+            }
+
+            SelectId(database.acts[index].id);
         }
 
         public void SelectId(string id)
@@ -108,21 +135,18 @@ namespace fireMCG.PathOfLayouts.Ui
 
                 case View.Areas:
                     _selectedAreaId = id;
-                    PopulateGraphWindow();
+                    _ = PopulateGraphWindowAsync();
                     break;
 
                 case View.Graphs:
                     _selectedGraphId = id;
-                    PopulateLayoutWindow();
+                    _ = PopulateLayoutWindowAsync();
                     break;
 
                 case View.Layouts:
-                    _selectedLayoutId = id;
-                    OpenLayoutSettings();
                     break;
 
                 default:
-                    // Error Message
                     ResetUi();
                     break;
             }
@@ -145,7 +169,6 @@ namespace fireMCG.PathOfLayouts.Ui
                     break;
 
                 default:
-                    // Error Message
                     ResetUi();
                     break;
             }
@@ -153,11 +176,12 @@ namespace fireMCG.PathOfLayouts.Ui
 
         public void Back()
         {
+            CancelPopulate();
+
             switch (_currentView)
             {
                 case View.Layouts:
                     _selectedGraphId = null;
-                    _selectedLayoutId = null;
                     ClearChildren(_layoutGridContent);
                     Show(View.Graphs);
                     break;
@@ -182,43 +206,146 @@ namespace fireMCG.PathOfLayouts.Ui
 
         private void PopulateAreaWindow()
         {
+            CancelPopulate();
+
             Show(View.Areas);
 
-            IReadOnlyList<AreaDef> areas = Bootstrap.Instance.CampaignDatabase.GetAct(_selectedActId).areas;
+            ActDef act = Bootstrap.Instance.CampaignDatabase.GetAct(_selectedActId);
+            if (act == null || act.areas is null || act.areas.Length < 1)
+            {
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to populate areas: act not found or has no areas."));
+
+                return;
+            }
+
+            ClearChildren(_areaMenuContent);
+
+            IReadOnlyList<AreaDef> areas = act.areas;
 
             foreach(AreaDef area in areas)
             {
+                if (area == null)
+                {
+                    continue;
+                }
+
+                // To do: Implement custom area thumbnails.
                 AreaCard card = Instantiate(_areaCardPrefab, _areaMenuContent);
                 card.Initialize(SelectId, PlayId, area.id);
             }
         }
 
-        private void PopulateGraphWindow()
+        private async Task PopulateGraphWindowAsync()
         {
+            CancelPopulate();
+
             Show(View.Graphs);
 
-            IReadOnlyList<GraphDef> graphs = Bootstrap.Instance.CampaignDatabase.GetArea(_selectedAreaId).graphs;
-
-            foreach (GraphDef graph in graphs)
+            AreaDef area = Bootstrap.Instance.CampaignDatabase.GetArea(_selectedAreaId);
+            if (area == null || area.graphs is null || area.graphs.Length < 1)
             {
-                // string renderPath = StreamingPathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.id);
-                // Texture2D texture = TextureFileLoader.LoadPng(renderPath, FilterMode.Bilinear);
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to populate graphs: area not found or has no graphs."));
 
-                GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
-                // card.Initialize(SelectId, PlayId, graph.id, texture);
+                return;
+            }
+
+            ClearChildren(_graphGridContent);
+
+            _populateTokenSource = new CancellationTokenSource();
+            CancellationToken token = _populateTokenSource.Token;
+
+            try
+            {
+                token.ThrowIfCancellationRequested();
+
+                await Bootstrap.Instance.ContentService.PreDownloadAreaGraphRendersAsync(_selectedAreaId, token);
+
+                token.ThrowIfCancellationRequested();
+
+                IReadOnlyList<GraphDef> graphs = area.graphs;
+
+                foreach (GraphDef graph in graphs)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    if (graph == null)
+                    {
+                        continue;
+                    }
+
+                    GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
+                    card.Initialize(SelectId, PlayId, graph.id);
+
+                    Texture2D render = await Bootstrap.Instance.ContentService.LoadGraphRenderAsync(graph.id, token);
+
+                    token.ThrowIfCancellationRequested();
+
+                    card.SetThumbnail(render);
+                }
+            }
+            catch (System.OperationCanceledException) { }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to populate graph renders."));
             }
         }
 
-        private void PopulateLayoutWindow()
+        private async Task PopulateLayoutWindowAsync()
         {
+            CancelPopulate();
+
             Show(View.Layouts);
 
-            IReadOnlyList<LayoutDef> layouts = Bootstrap.Instance.CampaignDatabase.GetGraph(_selectedGraphId).layouts;
-
-            foreach (LayoutDef layout in layouts)
+            GraphDef graph = Bootstrap.Instance.CampaignDatabase.GetGraph(_selectedGraphId);
+            if(graph == null || graph.layouts is null || graph.layouts.Length < 1)
             {
-                LayoutCard card = Instantiate(_layoutCardPrefab, _layoutGridContent);
-                card.Initialize(SelectId, PlayId, null, _selectedActId, _selectedAreaId, _selectedGraphId, layout.id);
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to populate layouts: graph not found or has no layouts."));
+
+                return;
+            }
+
+            ClearChildren(_layoutGridContent);
+
+            _populateTokenSource = new CancellationTokenSource();
+            CancellationToken token = _populateTokenSource.Token;
+
+            try
+            {
+                token.ThrowIfCancellationRequested();
+
+                await Bootstrap.Instance.ContentService.PreDownloadGraphLayoutImagesAsync(_selectedGraphId, token);
+
+                token.ThrowIfCancellationRequested();
+
+                IReadOnlyList<LayoutDef> layouts = graph.layouts;
+
+                foreach (LayoutDef layout in layouts)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    if (layout == null)
+                    {
+                        continue;
+                    }
+
+                    LayoutCard card = Instantiate(_layoutCardPrefab, _layoutGridContent);
+                    card.Initialize(SelectId, PlayId, layout.id);
+
+                    Texture2D layoutImage = await Bootstrap.Instance.ContentService.LoadLayoutImageAsync(layout.id, token);
+
+                    token.ThrowIfCancellationRequested();
+
+                    card.SetThumbnail(layoutImage);
+                }
+            }
+            catch (System.OperationCanceledException) { }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to populate layout images."));
             }
         }
 
@@ -229,10 +356,11 @@ namespace fireMCG.PathOfLayouts.Ui
 
         private void ResetUi()
         {
+            CancelPopulate();
+
             _selectedActId = null;
             _selectedAreaId = null;
             _selectedGraphId = null;
-            _selectedLayoutId = null;
 
             ClearChildren(_areaMenuContent);
             ClearChildren(_graphGridContent);
@@ -251,6 +379,18 @@ namespace fireMCG.PathOfLayouts.Ui
             _layoutGridRoot.SetActive(view == View.Layouts);
 
             _backButton.SetActive(view != View.Acts);
+        }
+
+        private void CancelPopulate()
+        {
+            if(_populateTokenSource is null)
+            {
+                return;
+            }
+
+            _populateTokenSource.Cancel();
+            _populateTokenSource.Dispose();
+            _populateTokenSource = null;
         }
 
         private static void ClearChildren(RectTransform parent)

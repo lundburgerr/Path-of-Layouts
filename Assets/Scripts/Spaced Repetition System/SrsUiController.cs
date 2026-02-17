@@ -191,8 +191,7 @@ namespace fireMCG.PathOfLayouts.Srs
                 button.Initialize(
                     OnSelectEntry,
                     OnPlayEntry,
-                    entry.graphId,
-                    SrsService.GetSrsEntryKey(entry.actId, entry.areaId, entry.graphId, entry.layoutId));
+                    entry.layoutId);
             }
         }
 

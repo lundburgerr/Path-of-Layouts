@@ -1,7 +1,5 @@
 using fireMCG.PathOfLayouts.Campaign;
-using fireMCG.PathOfLayouts.Content;
 using fireMCG.PathOfLayouts.Core;
-using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Prompt;
 using System.Collections.Generic;
@@ -19,8 +17,11 @@ namespace fireMCG.PathOfLayouts.Layouts
 
         private void OnDestroy()
         {
-            _loadTokenSource.Cancel();
-            _loadTokenSource?.Dispose();
+            if(_loadTokenSource is not null)
+            {
+                _loadTokenSource.Cancel();
+                _loadTokenSource?.Dispose();
+            }
         }
 
         private void OnEnable()

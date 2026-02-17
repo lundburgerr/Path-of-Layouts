@@ -32,8 +32,12 @@ namespace fireMCG.PathOfLayouts.IO
 
         private void OnDestroy()
         {
-            _cancelTokenSource.Cancel();
-            _cancelTokenSource?.Dispose();
+            if (_cancelTokenSource != null)
+            {
+                _cancelTokenSource.Cancel();
+                _cancelTokenSource?.Dispose();
+                _cancelTokenSource = null;
+            }
         }
 
         private void OnApplicationQuit()

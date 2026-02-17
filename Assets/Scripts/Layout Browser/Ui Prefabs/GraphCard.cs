@@ -25,19 +25,32 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
             Assert.IsNotNull(_thumbnailImage);
         }
 
-        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string graphId, Texture2D thumbnail)
+        public void Initialize(Action<string> selectedCallback, Action<string> playCallback, string graphId)
         {
             _label.text = graphId;
+
+            _thumbnailImage.texture = null;
+
+            _selectedCallback = selectedCallback;
+            _playCallback = playCallback;
+            _graphId = graphId;
+        }
+
+        public void SetThumbnail(Texture2D thumbnail)
+        {
+            if(thumbnail == null)
+            {
+                _thumbnailImage.texture = null;
+
+                return;
+            }
 
             float scaleX = _thumbnailBackground.sizeDelta.x / thumbnail.width;
             float scaleY = _thumbnailBackground.sizeDelta.y / thumbnail.height;
             float scale = Mathf.Min(scaleX, scaleY);
-            _thumbnailContainer.sizeDelta = new Vector2(thumbnail.width * scale, thumbnail.height * scale);
 
+            _thumbnailContainer.sizeDelta = new Vector2(thumbnail.width * scale, thumbnail.height * scale);
             _thumbnailImage.texture = thumbnail;
-            _selectedCallback = selectedCallback;
-            _playCallback = playCallback;
-            _graphId = graphId;
         }
 
         public void Select()

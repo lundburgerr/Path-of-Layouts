@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Campaign.AreaDef
   id: 5769f4e4719a38c41a4c8d725229d667
   displayName: Clearfell
-  thumbnail: {fileID: 0}
+  thumbnail: {fileID: 2800000, guid: 7ff87030cd4aeaa48a1c3ab81fd7a9a5, type: 3}
   graphs:
   - {fileID: 11400000, guid: d3e2f56210dc3bc4798827178d5a068f, type: 2}
   - {fileID: 11400000, guid: c84ff471b85619544b9b5d4086fe5c7f, type: 2}

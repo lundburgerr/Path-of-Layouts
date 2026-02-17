@@ -170,7 +170,7 @@ namespace fireMCG.PathOfLayouts.Content
                 return;
             }
 
-            AsyncOperationHandle handle = Addressables.DownloadDependenciesAsync(label, Addressables.MergeMode.Union, autoReleaseHandle: false);
+            AsyncOperationHandle handle = Addressables.DownloadDependenciesAsync(label, false);
             await handle.Task;
 
             token.ThrowIfCancellationRequested();

@@ -19,11 +19,7 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
 
         private Action<string> _settingsCallback;
         private Action<string> _playCallback;
-        private string _actId;
-        private string _areaId;
-        private string _graphId;
         private string _layoutId;
-        private string _srsEntryKey;
 
         private bool _isLearning;
 
@@ -37,34 +33,37 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
             Assert.IsNotNull(_removeFromLearningButton);
         }
 
-        public void Initialize(
-            Action<string> settingsCallback,
-            Action<string> playCallback,
-            Texture2D thumbnail,
-            string actId,
-            string areaId,
-            string graphId,
-            string layoutId)
+        public void Initialize(Action<string> settingsCallback, Action<string> playCallback, string layoutId)
         {
-            _actId = actId;
-            _areaId = areaId;
-            _graphId = graphId;
             _layoutId = layoutId;
-            _srsEntryKey = SrsService.GetSrsEntryKey(_actId, _areaId, _graphId, _layoutId);
 
             _label.text = layoutId;
+
+            _thumbnailImage.texture = null;
+
+            _settingsCallback = settingsCallback;
+            _playCallback = playCallback;
+
+            _isLearning = Bootstrap.Instance.SrsService.IsLearning(layoutId);
+
+            SetSrsButtonStates();
+        }
+
+        public void SetThumbnail(Texture2D thumbnail)
+        {
+            if(thumbnail == null)
+            {
+                _thumbnailImage.texture = null;
+
+                return;
+            }
 
             float scaleX = _thumbnailBackground.sizeDelta.x / thumbnail.width;
             float scaleY = _thumbnailBackground.sizeDelta.y / thumbnail.height;
             float scale = Mathf.Min(scaleX, scaleY);
+
             _thumbnailContainer.sizeDelta = new Vector2(thumbnail.width * scale, thumbnail.height * scale);
-
             _thumbnailImage.texture = thumbnail;
-            _settingsCallback = settingsCallback;
-            _playCallback = playCallback;
-
-            _isLearning = Bootstrap.Instance.SrsService.IsLearning(_srsEntryKey);
-            SetSrsButtonStates();
         }
 
         public void Play()
@@ -79,7 +78,7 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
 
         public void AddToLearning()
         {
-            if (!Bootstrap.Instance.SrsService.AddToLearning(_actId, _areaId, _graphId, _layoutId))
+            if (!Bootstrap.Instance.SrsService.AddToLearning(_layoutId))
             {
                 return;
             }
@@ -91,7 +90,7 @@ namespace fireMCG.PathOfLayouts.LayoutBrowser.Ui
 
         public void RemoveFromLearning()
         {
-            if (!Bootstrap.Instance.SrsService.RemoveFromLearning(_srsEntryKey))
+            if (!Bootstrap.Instance.SrsService.RemoveFromLearning(_layoutId))
             {
                 return;
             }

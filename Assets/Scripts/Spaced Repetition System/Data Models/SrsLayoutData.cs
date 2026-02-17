@@ -6,15 +6,6 @@ namespace fireMCG.PathOfLayouts.Srs
     [Serializable]
     public sealed class SrsLayoutData
     {
-        [JsonProperty("actId")]
-        public string actId;
-
-        [JsonProperty("areaId")]
-        public string areaId;
-
-        [JsonProperty("graphId")]
-        public string graphId;
-
         [JsonProperty("layoutId")]
         public string layoutId;
 
@@ -48,11 +39,8 @@ namespace fireMCG.PathOfLayouts.Srs
         [JsonProperty("averageTimeSeconds")]
         public float averageTimeSeconds;
 
-        public SrsLayoutData(string actId, string areaId, string graphId, string layoutId)
+        public SrsLayoutData(string layoutId)
         {
-            this.actId = actId;
-            this.areaId = areaId;
-            this.graphId = graphId;
             this.layoutId = layoutId;
             isLearning = false;
             masteryLevel = 0;

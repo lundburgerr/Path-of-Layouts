@@ -72,29 +72,27 @@ namespace fireMCG.PathOfLayouts.Srs
             SrsData = SrsSaveData.CreateDefault();
         }
 
-        public bool AddToLearning(string actId, string areaId, string graphId, string layoutId)
+        public bool AddToLearning(string layoutId)
         {
-            string srsEntryKey = GetSrsEntryKey(actId, areaId, graphId, layoutId);
-
-            if (!TryValidateKey(srsEntryKey, "SrsService.AddToLearning", "Error adding srs entry to the learning queue"))
+            if (!TryValidateKey(layoutId, "SrsService.AddToLearning", "Error adding srs entry to the learning queue"))
             {
                 return false;
             }
 
             SrsLayoutData layoutData;
 
-            if (SrsData.layouts.TryGetValue(srsEntryKey, out layoutData))
+            if (SrsData.layouts.TryGetValue(layoutId, out layoutData))
             {
                 layoutData.isLearning = true;
             }
             else
             {
-                layoutData = new(actId, areaId, graphId, layoutId)
+                layoutData = new(layoutId)
                 {
                     isLearning = true
                 };
 
-                SrsData.layouts.Add(srsEntryKey, layoutData);
+                SrsData.layouts.Add(layoutId, layoutData);
             }
 
             MarkDirty();
