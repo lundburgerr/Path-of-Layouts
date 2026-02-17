@@ -281,7 +281,7 @@ namespace fireMCG.PathOfLayouts.Srs
         private void OnPlayEntry(string entryKey)
         {
             SrsLayoutData data = Bootstrap.Instance.SrsService.SrsData.layouts[entryKey]; 
-            MessageBusManager.Instance.Publish(new LoadTargetLayoutMessage(data.actId, data.areaId, data.graphId, data.layoutId));
+            MessageBusManager.Instance.Publish(new LoadTargetLayoutMessage(data.layoutId));
         }
 
         private void ClearStatisticsUi()

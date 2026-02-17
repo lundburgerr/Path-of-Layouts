@@ -1,16 +1,27 @@
-using fireMCG.PathOfLayouts.Common;
+using fireMCG.PathOfLayouts.Campaign;
+using fireMCG.PathOfLayouts.Content;
 using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.IO;
-using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
+using fireMCG.PathOfLayouts.Prompt;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace fireMCG.PathOfLayouts.Layouts
 {
-    public class LayoutLoader : MonoBehaviour
+    public sealed class LayoutLoader : MonoBehaviour
     {
         public enum LayoutLoadingMethod { RandomAct, RandomArea, RandomGraph, RandomLayout, TargetLayout }
+
+        private CancellationTokenSource _loadTokenSource;
+
+        private void OnDestroy()
+        {
+            _loadTokenSource.Cancel();
+            _loadTokenSource?.Dispose();
+        }
 
         private void OnEnable()
         {
@@ -24,114 +35,128 @@ namespace fireMCG.PathOfLayouts.Layouts
 
         private void RegisterMessageListeners()
         {
-            MessageBusManager.Instance.Subscribe<LoadRandomActMessage>(PlayRandomAct);
-            MessageBusManager.Instance.Subscribe<LoadRandomAreaMessage>(PlayRandomArea);
-            MessageBusManager.Instance.Subscribe<LoadRandomGraphMessage>(PlayRandomGraph);
-            MessageBusManager.Instance.Subscribe<LoadRandomLayoutMessage>(PlayRandomLayout);
-            MessageBusManager.Instance.Subscribe<LoadTargetLayoutMessage>(PlayTargetLayout);
+            MessageBusManager.Instance.Subscribe<LoadRandomActMessage>(OnPlayRandomAct);
+            MessageBusManager.Instance.Subscribe<LoadRandomAreaMessage>(OnPlayRandomArea);
+            MessageBusManager.Instance.Subscribe<LoadRandomGraphMessage>(OnPlayRandomGraph);
+            MessageBusManager.Instance.Subscribe<LoadRandomLayoutMessage>(OnPlayRandomLayout);
+            MessageBusManager.Instance.Subscribe<LoadTargetLayoutMessage>(OnPlayTargetLayout);
         }
 
         private void UnregisterMessageListeners()
         {
-            MessageBusManager.Instance.Unsubscribe<LoadRandomActMessage>(PlayRandomAct);
-            MessageBusManager.Instance.Unsubscribe<LoadRandomAreaMessage>(PlayRandomArea);
-            MessageBusManager.Instance.Unsubscribe<LoadRandomGraphMessage>(PlayRandomGraph);
-            MessageBusManager.Instance.Unsubscribe<LoadRandomLayoutMessage>(PlayRandomLayout);
-            MessageBusManager.Instance.Unsubscribe<LoadTargetLayoutMessage>(PlayTargetLayout);
+            MessageBusManager.Instance.Unsubscribe<LoadRandomActMessage>(OnPlayRandomAct);
+            MessageBusManager.Instance.Unsubscribe<LoadRandomAreaMessage>(OnPlayRandomArea);
+            MessageBusManager.Instance.Unsubscribe<LoadRandomGraphMessage>(OnPlayRandomGraph);
+            MessageBusManager.Instance.Unsubscribe<LoadRandomLayoutMessage>(OnPlayRandomLayout);
+            MessageBusManager.Instance.Unsubscribe<LoadTargetLayoutMessage>(OnPlayTargetLayout);
         }
 
-        private void PlayRandomAct(LoadRandomActMessage message)
+        private void OnPlayRandomAct(LoadRandomActMessage message)
         {
-            IReadOnlyList<ActEntry> acts = Bootstrap.Instance.ManifestService.Manifest.acts;
-            string actId = acts[Random.Range(0, acts.Count)].actId;
+            IReadOnlyList<ActDef> acts = Bootstrap.Instance.CampaignDatabase.acts;
+            string actId = acts[Random.Range(0, acts.Count)].id;
 
-            PlayRandomArea(actId, LayoutLoadingMethod.RandomAct);
+            PlayRandomAreaInternal(actId, null, LayoutLoadingMethod.RandomAct);
         }
 
-        private void PlayRandomArea(LoadRandomAreaMessage message)
+        private void OnPlayRandomArea(LoadRandomAreaMessage message)
         {
-            IReadOnlyList<AreaEntry> areas = Bootstrap.Instance.ManifestService.Manifest.GetAreas(message.ActId);
-            string areaId = areas[Random.Range(0, areas.Count)].areaId;
-
-            PlayRandomGraph(message.ActId, areaId, LayoutLoadingMethod.RandomArea);
+            PlayRandomAreaInternal(message.ActId, message.ActId, LayoutLoadingMethod.RandomAct);
         }
 
-        private void PlayRandomArea(string actId, LayoutLoadingMethod loadingMethod)
+        private void OnPlayRandomGraph(LoadRandomGraphMessage message)
         {
-            IReadOnlyList<AreaEntry> areas = Bootstrap.Instance.ManifestService.Manifest.GetAreas(actId);
-            string areaId = areas[Random.Range(0, areas.Count)].areaId;
-
-            PlayRandomGraph(actId, areaId, LayoutLoadingMethod.RandomArea);
+            PlayRandomGraphInternal(message.AreaId, message.AreaId, LayoutLoadingMethod.RandomGraph);
         }
 
-        private void PlayRandomGraph(LoadRandomGraphMessage message)
+        private void OnPlayRandomLayout(LoadRandomLayoutMessage message)
         {
-            IReadOnlyList<GraphEntry> graphs = Bootstrap.Instance.ManifestService.Manifest.GetGraphs(message.ActId, message.AreaId);
-            string graphId = graphs[Random.Range(0, graphs.Count)].graphId;
-
-            PlayRandomLayout(message.ActId, message.AreaId, graphId, LayoutLoadingMethod.RandomGraph);
+            PlayRandomLayoutInternal(message.GraphId, message.GraphId, LayoutLoadingMethod.RandomLayout);
         }
 
-        private void PlayRandomGraph(string actId, string areaId, LayoutLoadingMethod loadingMethod)
+        private void PlayRandomAreaInternal(string actId, string rootId, LayoutLoadingMethod loadingMethod)
         {
-            IReadOnlyList<GraphEntry> graphs = Bootstrap.Instance.ManifestService.Manifest.GetGraphs(actId, areaId);
-            string graphId = graphs[Random.Range(0, graphs.Count)].graphId;
+            IReadOnlyList<AreaDef> areas = Bootstrap.Instance.CampaignDatabase.GetAct(actId).areas;
+            string areaId = areas[Random.Range(0, areas.Count)].id;
 
-            PlayRandomLayout(actId, areaId, graphId, LayoutLoadingMethod.RandomGraph);
+            PlayRandomGraphInternal(areaId, rootId, LayoutLoadingMethod.RandomArea);
         }
 
-        private void PlayRandomLayout(LoadRandomLayoutMessage message)
+        private void PlayRandomGraphInternal(string areaId, string rootId, LayoutLoadingMethod loadingMethod)
         {
-            IReadOnlyList<string> layouts = Bootstrap.Instance.ManifestService.Manifest.GetLayoutIds(message.ActId, message.AreaId, message.GraphId);
-            string layoutId = layouts[Random.Range(0, layouts.Count)];
+            IReadOnlyList<GraphDef> graphs = Bootstrap.Instance.CampaignDatabase.GetArea(areaId).graphs;
+            string graphId = graphs[Random.Range(0, graphs.Count)].id;
 
-            TryLoadLayout(message.ActId, message.AreaId, message.GraphId, layoutId, LayoutLoadingMethod.RandomLayout);
+            PlayRandomLayoutInternal(graphId, rootId, LayoutLoadingMethod.RandomGraph);
         }
 
-        private void PlayRandomLayout(string actId, string areaId, string graphId, LayoutLoadingMethod loadingMethod)
+        private void PlayRandomLayoutInternal(string graphId, string rootId, LayoutLoadingMethod loadingMethod)
         {
-            IReadOnlyList<string> layouts = Bootstrap.Instance.ManifestService.Manifest.GetLayoutIds(actId, areaId, graphId);
-            string layoutId = layouts[Random.Range(0, layouts.Count)];
+            IReadOnlyList<LayoutDef> layouts = Bootstrap.Instance.CampaignDatabase.GetGraph(graphId).layouts;
+            string layoutId = layouts[Random.Range(0, layouts.Count)].id;
 
-            TryLoadLayout(actId, areaId, graphId, layoutId, loadingMethod);
+            _ = LoadLayoutAsync(layoutId, rootId, loadingMethod);
         }
 
-        private void PlayTargetLayout(LoadTargetLayoutMessage message)
+        private void OnPlayTargetLayout(LoadTargetLayoutMessage message)
         {
-            TryLoadLayout(message.ActId, message.AreaId, message.GraphId, message.LayoutId, LayoutLoadingMethod.TargetLayout);
+            _ = LoadLayoutAsync(message.LayoutId, null, LayoutLoadingMethod.TargetLayout);
         }
 
-        private void TryLoadLayout(string actId, string areaId, string graphId, string layoutId, LayoutLoadingMethod loadingMethod)
+        private async Task LoadLayoutAsync(string layoutId, string rootId, LayoutLoadingMethod loadingMethod)
         {
-            Texture2D layoutMap = null;
-            Texture2D collisionMap = null;
-            string layoutPath = StreamingPathResolver.GetLayoutFilePath(actId, areaId, graphId, layoutId);
-            string collisionPath = StreamingPathResolver.GetCollisionMapFilePath(actId, areaId, graphId, layoutId);
+            if (string.IsNullOrWhiteSpace(layoutId))
+            {
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to load layout: layoutId is empty."));
+                MessageBusManager.Instance.Publish(new OnAppStateChangeRequest(StateController.AppState.MainMenu));
+
+                return;
+            }
+
+            CancelAndRenewLoadTokenSource();
+
+            CancellationToken token = _loadTokenSource.Token;
+
+            if (Bootstrap.Instance.ContentService == null)
+            {
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to load layout: ContentService is not initialized."));
+
+                return;
+            }
 
             try
             {
-                layoutMap = TextureFileLoader.LoadPng(layoutPath, FilterMode.Bilinear);
-                collisionMap = TextureFileLoader.LoadPng(collisionPath, FilterMode.Point);
+                token.ThrowIfCancellationRequested();
 
-                if(layoutMap is null || collisionMap is null)
-                {
-                    throw new System.Exception("Layout and collision maps can't be null.");
-                }
+                Texture2D layoutImage = await Bootstrap.Instance.ContentService.LoadLayoutImageAsync(layoutId, token);
+
+                token.ThrowIfCancellationRequested();
+
+                MessageBusManager.Instance.Publish(new OnAppStateChangeRequest(StateController.AppState.Gameplay));
+                MessageBusManager.Instance.Publish(new OnLayoutLoadedMessage(
+                    rootId,
+                    layoutId,
+                    layoutImage,
+                    loadingMethod));
             }
-            catch(System.Exception e)
+            catch (System.OperationCanceledException) { }
+            catch (System.Exception e)
             {
-                throw new System.Exception($"LayoutLoader.TryLoadLayout failed to load textures.", e);
+                Debug.LogError(e);
+
+                MessageBusManager.Instance.Publish(new OnErrorMessage("Failed to load layout image."));
+            }
+        }
+
+        private void CancelAndRenewLoadTokenSource()
+        {
+            if(_loadTokenSource is not null)
+            {
+                _loadTokenSource.Cancel();
+                _loadTokenSource.Dispose();
             }
 
-            MessageBusManager.Instance.Publish(new OnAppStateChangeRequest(StateController.AppState.Gameplay));
-            MessageBusManager.Instance.Publish(new OnLayoutLoadedMessage(
-                actId,
-                areaId,
-                graphId,
-                layoutId,
-                layoutMap,
-                collisionMap,
-                loadingMethod));
+            _loadTokenSource = new CancellationTokenSource();
         }
     }
 }

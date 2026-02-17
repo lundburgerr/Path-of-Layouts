@@ -2,11 +2,11 @@ using fireMCG.PathOfLayouts.Core;
 using fireMCG.PathOfLayouts.IO;
 using fireMCG.PathOfLayouts.LayoutBrowser.Ui;
 using fireMCG.PathOfLayouts.Layouts;
-using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 using UnityEngine;
+using fireMCG.PathOfLayouts.Campaign;
 
 namespace fireMCG.PathOfLayouts.Ui
 {
@@ -133,15 +133,15 @@ namespace fireMCG.PathOfLayouts.Ui
             switch (_currentView)
             {
                 case View.Areas:
-                    MessageBusManager.Instance.Publish(new LoadRandomGraphMessage(_selectedActId, id));
+                    MessageBusManager.Instance.Publish(new LoadRandomGraphMessage(id));
                     break;
 
                 case View.Graphs:
-                    MessageBusManager.Instance.Publish(new LoadRandomLayoutMessage(_selectedActId, _selectedAreaId, id));
+                    MessageBusManager.Instance.Publish(new LoadRandomLayoutMessage(id));
                     break;
 
                 case View.Layouts:
-                    MessageBusManager.Instance.Publish(new LoadTargetLayoutMessage(_selectedActId, _selectedAreaId, _selectedGraphId, id));
+                    MessageBusManager.Instance.Publish(new LoadTargetLayoutMessage(id));
                     break;
 
                 default:
@@ -184,12 +184,12 @@ namespace fireMCG.PathOfLayouts.Ui
         {
             Show(View.Areas);
 
-            IReadOnlyList<AreaEntry> areas = Bootstrap.Instance.ManifestService.Manifest.GetAreas(_selectedActId);
+            IReadOnlyList<AreaDef> areas = Bootstrap.Instance.CampaignDatabase.GetAct(_selectedActId).areas;
 
-            foreach(AreaEntry area in areas)
+            foreach(AreaDef area in areas)
             {
                 AreaCard card = Instantiate(_areaCardPrefab, _areaMenuContent);
-                card.Initialize(SelectId, PlayId, area.areaId);
+                card.Initialize(SelectId, PlayId, area.id);
             }
         }
 
@@ -197,16 +197,15 @@ namespace fireMCG.PathOfLayouts.Ui
         {
             Show(View.Graphs);
 
-            IReadOnlyList<GraphEntry> graphs = Bootstrap.Instance.ManifestService.Manifest
-                .GetGraphs(_selectedActId, _selectedAreaId);
+            IReadOnlyList<GraphDef> graphs = Bootstrap.Instance.CampaignDatabase.GetArea(_selectedAreaId).graphs;
 
-            foreach (GraphEntry graph in graphs)
+            foreach (GraphDef graph in graphs)
             {
-                string renderPath = StreamingPathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.graphId);
-                Texture2D texture = TextureFileLoader.LoadPng(renderPath, FilterMode.Bilinear);
+                // string renderPath = StreamingPathResolver.GetGraphRenderFilePath(_selectedActId, _selectedAreaId, graph.id);
+                // Texture2D texture = TextureFileLoader.LoadPng(renderPath, FilterMode.Bilinear);
 
                 GraphCard card = Instantiate(_graphCardPrefab, _graphGridContent);
-                card.Initialize(SelectId, PlayId, graph.graphId, texture);
+                // card.Initialize(SelectId, PlayId, graph.id, texture);
             }
         }
 
@@ -214,16 +213,12 @@ namespace fireMCG.PathOfLayouts.Ui
         {
             Show(View.Layouts);
 
-            IReadOnlyList<string> layoutIds = Bootstrap.Instance.ManifestService.Manifest
-                .GetLayoutIds(_selectedActId, _selectedAreaId, _selectedGraphId);
+            IReadOnlyList<LayoutDef> layouts = Bootstrap.Instance.CampaignDatabase.GetGraph(_selectedGraphId).layouts;
 
-            foreach (string layout in layoutIds)
+            foreach (LayoutDef layout in layouts)
             {
-                string collisionPath = StreamingPathResolver.GetCollisionMapFilePath(_selectedActId, _selectedAreaId, _selectedGraphId, layout);
-                Texture2D texture = TextureFileLoader.LoadPng(collisionPath, FilterMode.Bilinear);
-
                 LayoutCard card = Instantiate(_layoutCardPrefab, _layoutGridContent);
-                card.Initialize(SelectId, PlayId, texture, _selectedActId, _selectedAreaId, _selectedGraphId, layout);
+                card.Initialize(SelectId, PlayId, null, _selectedActId, _selectedAreaId, _selectedGraphId, layout.id);
             }
         }
 
@@ -260,7 +255,10 @@ namespace fireMCG.PathOfLayouts.Ui
 
         private static void ClearChildren(RectTransform parent)
         {
-            if (!parent) return;
+            if (!parent)
+            {
+                return;
+            }
 
             for (int i = parent.childCount - 1; i >= 0; i--)
             {

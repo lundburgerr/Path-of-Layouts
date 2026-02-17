@@ -4,7 +4,6 @@ using fireMCG.PathOfLayouts.Messaging;
 using UnityEngine.Assertions;
 using UnityEngine;
 using UnityEngine.UI;
-using fireMCG.PathOfLayouts.Srs;
 
 namespace fireMCG.PathOfLayouts.Gameplay
 {
@@ -12,26 +11,20 @@ namespace fireMCG.PathOfLayouts.Gameplay
     {
         public struct ReplayContext
         {
-            public readonly string ActId;
-            public readonly string AreaId;
-            public readonly string GraphId;
+            public readonly string RootId;
             public readonly string LayoutId;
             public readonly LayoutLoader.LayoutLoadingMethod LayoutLoadingMethod;
 
-            public ReplayContext(string actId, string areaId, string graphId, string layoutId, LayoutLoader.LayoutLoadingMethod method)
+            public ReplayContext(string rootId, string layoutId, LayoutLoader.LayoutLoadingMethod method)
             {
-                ActId = actId;
-                AreaId = areaId;
-                GraphId = graphId;
+                RootId = rootId;
                 LayoutId = layoutId;
                 LayoutLoadingMethod = method;
             }
 
             public ReplayContext(OnLayoutLoadedMessage message)
             {
-                ActId = message.ActId;
-                AreaId = message.AreaId;
-                GraphId = message.GraphId;
+                RootId = message.RootId;
                 LayoutId = message.LayoutId;
                 LayoutLoadingMethod = message.LayoutLoadingMethod;
             }
@@ -41,7 +34,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
         [SerializeField] private RectTransform _layoutTransform;
 
         [SerializeField] private PlayerController _playerController;
-        [SerializeField] private CollisionMap _collisionMap;
         [SerializeField] private FogOfWar _fogOfWar;
 
         private ReplayContext _replayContext;
@@ -51,7 +43,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
             Assert.IsNotNull(_layoutDisplay);
             Assert.IsNotNull(_layoutTransform);
             Assert.IsNotNull(_playerController);
-            Assert.IsNotNull(_collisionMap);
             Assert.IsNotNull(_fogOfWar);
         }
 
@@ -86,7 +77,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutTransform);
 
-            _collisionMap.Build(message.CollisionMap);
             _fogOfWar.Build(message.LayoutMap.width, message.LayoutMap.height);
             _playerController.Initialize();
             MessageBusManager.Instance.Publish(new RestartTimerMessage());
@@ -112,20 +102,17 @@ namespace fireMCG.PathOfLayouts.Gameplay
                 case LayoutLoader.LayoutLoadingMethod.RandomArea:
                     MessageBusManager.Instance.Publish(
                         new LoadRandomAreaMessage(
-                            _replayContext.ActId));
+                            _replayContext.RootId));
                     break;
                 case LayoutLoader.LayoutLoadingMethod.RandomGraph:
                     MessageBusManager.Instance.Publish(
                         new LoadRandomGraphMessage(
-                            _replayContext.ActId,
-                            _replayContext.AreaId));
+                            _replayContext.RootId));
                     break;
                 case LayoutLoader.LayoutLoadingMethod.RandomLayout:
                     MessageBusManager.Instance.Publish(
                         new LoadRandomLayoutMessage(
-                            _replayContext.ActId,
-                            _replayContext.AreaId,
-                            _replayContext.GraphId));
+                            _replayContext.RootId));
                     break;
                 default:
                     Replay();
@@ -135,14 +122,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         private void RecordSrsResult(RecordSrsResultMessage message)
         {
-            Bootstrap.Instance.SrsService.RecordPractice(
-                SrsService.GetSrsEntryKey(
-                    _replayContext.ActId,
-                    _replayContext.AreaId,
-                    _replayContext.GraphId,
-                    _replayContext.LayoutId),
-                message.Result,
-                TimerUiController.timer.Time);
+            Bootstrap.Instance.SrsService.RecordPractice(_replayContext.LayoutId, message.Result, TimerUiController.timer.Time);
         }
 
         private void Replay()

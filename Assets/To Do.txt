@@ -12,6 +12,25 @@ SrsUiController.cs
 
 General List: (in order of priority)
 
+Project:
+- Make IDs the single source of truth everywhere
+- Update Srs keys to only use layoutId instead of compounding act-area...
+- Add a ContentService to centralize image loading
+- - This takes care of loading addressables
+- - This will eventually take care of loading user generated content
+- - Handles caching and releasing assets
+- Refactor LayoutBrowserUiController to database flow
+- Refactor LayoutLoard to database + ContentService flow
+- Remove collision script temporarily
+- - Update gameplay to spawn at the center of the layout for the time being
+- - Update gameplay to remove any references to the collision map script
+- Remove Manifest + Streaming Path scripts and references
+
+CampaignDatabase:
+- Add parent lookup tables for navData?, layouts, graphs and areas
+- - Build the tables when walking the hierarchy
+- - Expose those lookup tables
+
 Replace Manifest and Folder Logic:
 - Move shipped layouts out of Streaming Assets in order to be able to compress at build time and utilize Unity's faster loading pipeline
 - Ship app with a layout for each graph

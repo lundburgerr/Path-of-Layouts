@@ -1,11 +1,12 @@
 using fireMCG.PathOfLayouts.Campaign;
+using fireMCG.PathOfLayouts.Content;
 using fireMCG.PathOfLayouts.IO;
-using fireMCG.PathOfLayouts.Manifest;
 using fireMCG.PathOfLayouts.Messaging;
 using fireMCG.PathOfLayouts.Srs;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace fireMCG.PathOfLayouts.Core
 {
@@ -13,9 +14,9 @@ namespace fireMCG.PathOfLayouts.Core
     {
         public static Bootstrap Instance { get; private set; }
 
-        [field: SerializeField] public CampaignDatabase Campaign { get; private set; }
+        [field: SerializeField] public CampaignDatabase CampaignDatabase { get; private set; }
 
-        public CampaignManifestService ManifestService { get; private set; }
+        public ContentService ContentService { get; private set; }
 
         public SrsService SrsService { get; private set; }
 
@@ -36,6 +37,8 @@ namespace fireMCG.PathOfLayouts.Core
             Instance = this;
 
             _tokenSource = new CancellationTokenSource();
+
+            Assert.IsNotNull(CampaignDatabase);
         }
 
         private async void Start()
@@ -63,6 +66,11 @@ namespace fireMCG.PathOfLayouts.Core
                 Instance = null;
             }
 
+            if(ContentService != null)
+            {
+                ContentService.ReleaseAll();
+            }
+
             _tokenSource?.Cancel();
             _tokenSource?.Dispose();
         }
@@ -71,17 +79,13 @@ namespace fireMCG.PathOfLayouts.Core
         {
             token.ThrowIfCancellationRequested();
 
-            if (Campaign != null)
+            if (CampaignDatabase == null)
             {
-                Campaign.BuildRuntimeIndex();
+                throw new System.InvalidOperationException("Bootstrap.InitializeAsync error, CampaignDatabase is null.");
+            }
 
-                Debug.Log("Bootstrap.Initialize using CampaignDatabase asset. (ignoring Manifest)");
-            }
-            else
-            {
-                ManifestService = new CampaignManifestService();
-                await ManifestService.LoadManifestAsync(token);
-            }
+            CampaignDatabase.BuildRuntimeIndex();
+            ContentService = new ContentService(CampaignDatabase);
 
             SrsService = new SrsService();
 

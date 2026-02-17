@@ -60,12 +60,11 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         private void OnLayoutLoaded(OnLayoutLoadedMessage message)
         {
-            string srsEntryKey = SrsService.GetSrsEntryKey(message.ActId, message.AreaId, message.GraphId, message.LayoutId);
-            SetSrsState(Bootstrap.Instance.SrsService.IsLayoutDue(srsEntryKey));
+            SetSrsState(Bootstrap.Instance.SrsService.IsLayoutDue(message.LayoutId));
 
             _randomReplayButton.interactable = message.LayoutLoadingMethod != LayoutLoader.LayoutLoadingMethod.TargetLayout;
 
-            _areaName.text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(message.AreaId.Replace('_', ' '));
+            // _areaName.text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(message.AreaId.Replace('_', ' '));
         }
 
         public void SetSrsState(bool enabled)

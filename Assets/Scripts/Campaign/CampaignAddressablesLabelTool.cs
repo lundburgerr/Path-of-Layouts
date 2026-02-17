@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using fireMCG.PathOfLayouts.Campaign;
+using fireMCG.PathOfLayouts.Content;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,13 +14,6 @@ namespace fireMCG.PathOfLayouts.EditorTools
     public static class CampaignAddressablesLabelTool
     {
         private const string MENU_APPLY = "Tools/Path of Layouts/Campaign/Apply Addressables Labels (Selected DB)";
-
-        // Labels
-        // Graph renders are downloaded per AREA (when browsing/selecting an area).
-        private const string AREA_GRAPH_RENDERS_PREFIX = "area_graphRenders__";
-
-        // Layout images are downloaded per GRAPH (when browsing/selecting a graph).
-        private const string GRAPH_LAYOUT_IMAGES_PREFIX = "graph_layoutImages__";
 
         private const string GROUP_GRAPH_RENDERS = "Graph_Renders";
         private const string GROUP_LAYOUT_IMAGES = "Layout_Images";
@@ -104,7 +98,7 @@ namespace fireMCG.PathOfLayouts.EditorTools
                         continue;
                     }
 
-                    string areaLabel = AREA_GRAPH_RENDERS_PREFIX + area.id;
+                    string areaLabel = AddressablesLabels.AREA_GRAPH_RENDERS_PREFIX + area.id;
 
                     if (area.graphs == null)
                     {
@@ -138,7 +132,7 @@ namespace fireMCG.PathOfLayouts.EditorTools
                             continue;
                         }
 
-                        string graphLayoutsLabel = GRAPH_LAYOUT_IMAGES_PREFIX + graph.id;
+                        string graphLayoutsLabel = AddressablesLabels.GRAPH_LAYOUT_IMAGES_PREFIX + graph.id;
 
                         foreach (LayoutDef layout in graph.layouts)
                         {
@@ -172,8 +166,8 @@ namespace fireMCG.PathOfLayouts.EditorTools
                 "- Entries moved to groups: " + entriesMoved + "\n" +
                 "- Label adds: " + labelsAdded + "\n" +
                 "Labels:\n" +
-                "- Graph renders: " + AREA_GRAPH_RENDERS_PREFIX + "<AreaId>\n" +
-                "- Layout images: " + GRAPH_LAYOUT_IMAGES_PREFIX + "<GraphId>");
+                "- Graph renders: " + AddressablesLabels.AREA_GRAPH_RENDERS_PREFIX + "<AreaId>\n" +
+                "- Layout images: " + AddressablesLabels.GRAPH_LAYOUT_IMAGES_PREFIX + "<GraphId>");
         }
 
         private static bool TryGetGuid(AssetReference reference, out string guid)

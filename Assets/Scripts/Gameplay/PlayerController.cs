@@ -10,7 +10,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
     {
         [SerializeField] private RectTransform _cameraTransform;
         [SerializeField] private RectTransform _playerVisualTransform;
-        [SerializeField] private CollisionMap _collisionMap;
         [SerializeField] private FogOfWar _fogOfWar;
 
         [SerializeField] private int _playerVisualRadius = 4;
@@ -37,7 +36,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
         private void Awake()
         {
-            Assert.IsNotNull(_collisionMap);
             Assert.IsNotNull(_cameraTransform);
             Assert.IsNotNull(_playerVisualTransform);
             Assert.IsNotNull(_fogOfWar);
@@ -115,13 +113,6 @@ namespace fireMCG.PathOfLayouts.Gameplay
                 return;
             }
 
-            if (!_collisionMap.IsBuilt)
-            {
-                Debug.LogError("PlayerController.FixedUpdate error, collision is not built.");
-
-                return;
-            }
-
             float x = Input.GetAxisRaw("Horizontal");
             float y = Input.GetAxisRaw("Vertical");
             _isSprinting = Input.GetKey(KeyCode.Space);
@@ -148,7 +139,7 @@ namespace fireMCG.PathOfLayouts.Gameplay
 
             _playerVisualTransform.sizeDelta = new Vector2(_playerVisualRadius * 2, _playerVisualRadius * 2);
 
-            _playerPosition = _collisionMap.GetSpawnPoint();
+            _playerPosition = Vector2.zero;
             _fogOfWar.RevealAt(PlayerPixelPosition, _lightRadiusPercent);
 
             _isReady = true;
