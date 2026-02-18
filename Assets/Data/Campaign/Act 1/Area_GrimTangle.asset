@@ -15,4 +15,8 @@ MonoBehaviour:
   id: 4fb910b4c8849d643b8ba62ce63ad98a
   displayName: Grim Tangle
   thumbnail: {fileID: 0}
-  graphs: []
+  graphs:
+  - {fileID: 11400000, guid: 585225fb0b768334db2e0d4b313f918f, type: 2}
+  - {fileID: 11400000, guid: 6222c2a3f5890034d9b62da3c1ba453b, type: 2}
+  - {fileID: 11400000, guid: c3ae489e07932b5459f876b5ccca4d22, type: 2}
+  - {fileID: 11400000, guid: 7a9ea5a7c522e904e8902142b61464f9, type: 2}

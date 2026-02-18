@@ -16,3 +16,4 @@ MonoBehaviour:
   displayName: Act 1
   areas:
   - {fileID: 11400000, guid: 188d73228684a2a44a81b8c7fdd5b419, type: 2}
+  - {fileID: 11400000, guid: 4fb910b4c8849d643b8ba62ce63ad98a, type: 2}

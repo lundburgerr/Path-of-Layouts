@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Layout_Images
   m_GUID: 68477269d26ff6747b29c3ec756649bd
   m_SerializeEntries:
+  - m_GUID: 07e157ce595d56441b0f35836e104f5b
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_N/GrimTangle_N_Out-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__6222c2a3f5890034d9b62da3c1ba453b
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 32874075f64e7ec4bb2fba75cde114a4
     m_Address: Assets/Data/Campaign/Act 1/RedVale/RedVale_W1/RedVale_W1-001.png
     m_ReadOnly: 0
@@ -26,6 +32,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - graph_layoutImages__9b8d1e3ab2b7f2a4f95c420fbce58de1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52d53c01eee4fbe40a2967ba831a314e
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_W/GrimTangle_W-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__7a9ea5a7c522e904e8902142b61464f9
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68554959777c62e44aa452a60f04d625
     m_Address: Assets/Data/Campaign/Act 1/RedVale/RedVale_W2/RedVale_W2-001.png
@@ -57,11 +69,35 @@ MonoBehaviour:
     m_SerializedLabels:
     - graph_layoutImages__d05525635bf2d54478856b5f392f27e3
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc0097c01f7357c449f8975fe55f88c2
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_S/GrimTangle_S-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__c3ae489e07932b5459f876b5ccca4d22
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c151820748dd1454a8a7cb697a0d2d5c
     m_Address: Assets/Data/Campaign/Act 1/RedVale/RedVale_N2/RedVale_N2-001.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - graph_layoutImages__dde61e1a14439a945bfc637736ff29e5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce678474ff3a44740921aafda762c67a
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_N/GrimTangle_N_In-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__6222c2a3f5890034d9b62da3c1ba453b
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0838b053c79fd54a8b9fe8ef6dc22eb
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_E/GrimTangle_E_In-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__585225fb0b768334db2e0d4b313f918f
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6fcaf2eaa6c3b1469da0a627b428e87
+    m_Address: Assets/Data/Campaign/Act 1/GrimTangle/GrimTangle_E/GrimTangle_E_Out-001.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - graph_layoutImages__585225fb0b768334db2e0d4b313f918f
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9b86c132ac10e354b8d4902fd575a654, type: 2}

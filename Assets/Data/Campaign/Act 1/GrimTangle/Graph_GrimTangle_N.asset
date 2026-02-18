@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb19376d13051cd49a5eefc7dec35d78, type: 3}
+  m_Name: Graph_GrimTangle_N
+  m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Campaign.GraphDef
+  id: 6222c2a3f5890034d9b62da3c1ba453b
+  displayName: Grim Tangle N
+  tagSet:
+    tags: []
+  render:
+    m_AssetGUID: a138bad6ae0cf1c499432ac1336a9de1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  layouts:
+  - {fileID: 11400000, guid: 0496e4bc4f66a5942b0db74022e5c34b, type: 2}
+  - {fileID: 11400000, guid: 9ef7c3e4cfd5e3f4b95d3eac162eb139, type: 2}
