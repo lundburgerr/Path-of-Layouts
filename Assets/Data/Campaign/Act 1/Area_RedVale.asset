@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1da9599b6b98b4a8def0514c5dc416, type: 3}
+  m_Name: Area_RedVale
+  m_EditorClassIdentifier: Assembly-CSharp::fireMCG.PathOfLayouts.Campaign.AreaDef
+  id: 188d73228684a2a44a81b8c7fdd5b419
+  displayName: Red Vale
+  thumbnail: {fileID: 0}
+  graphs:
+  - {fileID: 11400000, guid: 19e5bc0b4b0a587429e58b850f99766a, type: 2}
+  - {fileID: 11400000, guid: 131c72213f2808d41a52100d6f4fa36c, type: 2}
+  - {fileID: 11400000, guid: d05525635bf2d54478856b5f392f27e3, type: 2}
+  - {fileID: 11400000, guid: dde61e1a14439a945bfc637736ff29e5, type: 2}
+  - {fileID: 11400000, guid: dd30407895baefb458126c0a60226e83, type: 2}
+  - {fileID: 11400000, guid: 9b8d1e3ab2b7f2a4f95c420fbce58de1, type: 2}
+  - {fileID: 11400000, guid: 7b9eb000c42f7c841b731148a1a0c9c9, type: 2}
+  - {fileID: 11400000, guid: 00954fd1f76a22d428276ce139a25bf9, type: 2}

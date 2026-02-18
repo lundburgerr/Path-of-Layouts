@@ -15,23 +15,53 @@ MonoBehaviour:
   m_GroupName: Graph_Renders
   m_GUID: e2f00274eaad5f64382d4d354a6218bd
   m_SerializeEntries:
-  - m_GUID: 9df5db3098871b94aa66530ee49400c4
-    m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_S.png
+  - m_GUID: 0f69354fb347f0942b67cfa7c248c568
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_W1.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - area_graphRenders__5769f4e4719a38c41a4c8d725229d667
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: adcb530563b4cfa48802641d2c1e5846
-    m_Address: Assets/Data/Campaign/Act 1/Grelwood/Grelwood_E_N.png
+  - m_GUID: 3407eea8d0c669945870e1f93e90b407
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_E2.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - area_graphRenders__8f02449cbecb563458595984ee20b998
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: da31605c78ca87745945d49c98be5553
-    m_Address: Assets/Data/Campaign/Act 1/Clearfell/Clearfell_N_E_W.png
+  - m_GUID: 37d35b981dcdc8244a155eb419b3c6f9
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_W2.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - area_graphRenders__5769f4e4719a38c41a4c8d725229d667
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43ea33aef9bd08e48b8b55451c4ef5c9
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_S1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 446c5f681b1886649afaf5265b2e9307
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_S2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 576960b002c65ab43b1d81a47a1d9f94
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_N1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fad90574783ddf448969d94721e3edf
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_N2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86f68ddcd1e24944db593aba2b905859
+    m_Address: Assets/Data/Campaign/Act 1/RedVale/redvale_E1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - area_graphRenders__188d73228684a2a44a81b8c7fdd5b419
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9b86c132ac10e354b8d4902fd575a654, type: 2}

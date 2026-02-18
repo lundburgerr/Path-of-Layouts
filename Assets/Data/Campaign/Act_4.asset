@@ -15,4 +15,9 @@ MonoBehaviour:
   id: 71a612a0579a4b340abc0519bdd6c3b4
   displayName: Act 4
   areas:
-  - {fileID: 11400000, guid: ad0594b18c9251d41bb67422be06cead, type: 2}
+  - {fileID: 11400000, guid: 8dc7023e751f1a7409f2159d22a337ff, type: 2}
+  - {fileID: 11400000, guid: e2e69c77ed6e05046b25d98a876b9163, type: 2}
+  - {fileID: 11400000, guid: 023a48cfc343a524db3bbc2c37caf5f7, type: 2}
+  - {fileID: 11400000, guid: 5121e0018a2261841b802a792ad49a83, type: 2}
+  - {fileID: 11400000, guid: 4fc95fe6528e12e4bbae9ce1c6665cff, type: 2}
+  - {fileID: 11400000, guid: 6a8cf007c2031da4496981aa067c834c, type: 2}

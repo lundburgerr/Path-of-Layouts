@@ -16,3 +16,7 @@ MonoBehaviour:
   displayName: Act 2
   areas:
   - {fileID: 11400000, guid: 1684fa4b4b266294bb9200e7c3e5818e, type: 2}
+  - {fileID: 11400000, guid: a1e10cc83fbf7b046b125c068241710a, type: 2}
+  - {fileID: 11400000, guid: 1d6fb2ea643d49e4eb44074531728846, type: 2}
+  - {fileID: 11400000, guid: 8445a937cffd6734ea5c04b17b8c32d7, type: 2}
+  - {fileID: 11400000, guid: 3be106e65d425dc45a3a146b7a2996ff, type: 2}
